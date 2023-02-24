@@ -8,6 +8,6 @@ class DatabaseHelper {
 
   /*Future<Database> get database async {
     if (_database != null) return _database!;
-    _database = _initdatabase();
+    _database = _initdatabase(); este es un comentario de prueba
   }*/
 }
