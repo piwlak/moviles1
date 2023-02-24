@@ -28,8 +28,11 @@ class _LoginPageState extends State<LoginPage> {
           children: [
             Container(
               height: _headerHeight,
-              child: HeaderWidget(_headerHeight, true,
-                  Icons.login_rounded), //let's create a common header widget
+              child: HeaderWidget(
+                  _headerHeight,
+                  true,
+                  Icons
+                      .account_circle_rounded), //let's create a common header widget
             ),
             SafeArea(
               child: Container(
@@ -39,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: Column(
                     children: [
                       Text(
-                        'Socialitec',
+                        'SocialiTec',
                         style: TextStyle(
                             fontSize: 60, fontWeight: FontWeight.bold),
                       ),
