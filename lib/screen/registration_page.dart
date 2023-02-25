@@ -33,7 +33,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
       final image = await ImagePicker().pickImage(source: source);
       if (image == null) return;
       File? img = File(image.path);
-      img = await _cropImage(imageFile: img);
       setState(() {
         _image = img;
         Navigator.of(context).pop();
@@ -42,13 +41,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
       print(e);
       Navigator.of(context).pop();
     }
-  }
-
-  Future<File?> _cropImage({required File imageFile}) async {
-    CroppedFile? croppedImage =
-        await ImageCropper().cropImage(sourcePath: imageFile.path);
-    if (croppedImage == null) return null;
-    return File(croppedImage.path);
   }
 
   void _showSelectPhotoOptions(BuildContext context) {
