@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import '../common/theme_helper.dart';
 import 'forgot_password_verification_page.dart';
 import 'login_screen.dart';
-import 'widgets/header_widget.dart';
+import 'package:moviles1/widgets/header_widget.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
   const ForgotPasswordPage({Key? key}) : super(key: key);

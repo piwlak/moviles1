@@ -4,9 +4,8 @@ class StyleSettings {
   static ThemeData lightTheme(BuildContext context) {
     final theme = ThemeData.light();
     return theme.copyWith(
-        colorScheme: Theme.of(context)
-            .colorScheme
-            .copyWith(primary: Color.fromARGB(255, 255, 209, 44)));
+        colorScheme:
+            Theme.of(context).colorScheme.copyWith(primary: Colors.blue));
   }
 
   static ThemeData DarTheme(BuildContext context) {
@@ -14,6 +13,6 @@ class StyleSettings {
     return theme.copyWith(
         colorScheme: Theme.of(context)
             .colorScheme
-            .copyWith(primary: Color.fromARGB(255, 1, 91, 119)));
+            .copyWith(primary: Color.fromARGB(255, 0, 75, 65)));
   }
 }

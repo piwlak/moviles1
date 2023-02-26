@@ -6,7 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hexcolor/hexcolor.dart';
 import '../common/theme_helper.dart';
 import 'profile_page.dart';
-import 'widgets/header_widget.dart';
+import '../widgets/header_widget.dart';
 
 import 'package:flutter/services.dart';
 import 'package:image_cropper/image_cropper.dart';

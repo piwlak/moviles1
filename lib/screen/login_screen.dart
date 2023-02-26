@@ -7,7 +7,7 @@ import '../common/theme_helper.dart';
 import 'forgot_password_page.dart';
 import 'profile_page.dart';
 import 'registration_page.dart';
-import 'widgets/header_widget.dart';
+import '../widgets/header_widget.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -128,7 +128,7 @@ class _LoginPageState extends State<LoginPage> {
                                       Navigator.of(context).pushAndRemoveUntil(
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  DashboradScreen()),
+                                                  ProfilePage()),
                                           (Route<dynamic> route) => false);
                                     }
                                   },

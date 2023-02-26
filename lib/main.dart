@@ -27,6 +27,7 @@ class PMSNApp extends StatelessWidget {
   Widget build(BuildContext context) {
     ThemeProvider theme = Provider.of<ThemeProvider>(context);
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: theme.getthemeData(),
       routes: getApplicationRoutes(),
       home: LoginPage(),
