@@ -12,7 +12,6 @@ import 'package:flutter/services.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import '../widgets/common_buttons.dart';
-import '../constants.dart';
 import 'select_photo_options_screen.dart';
 
 class RegistrationPage extends StatefulWidget {
