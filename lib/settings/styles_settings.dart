@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 class StyleSettings {
   static ThemeData lightTheme(BuildContext context) {
