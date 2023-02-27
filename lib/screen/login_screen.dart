@@ -128,7 +128,7 @@ class _LoginPageState extends State<LoginPage> {
                                       Navigator.of(context).pushAndRemoveUntil(
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  DashboradScreen()),
+                                                  ProfilePage()),
                                           (Route<dynamic> route) => false);
                                     }
                                   },
