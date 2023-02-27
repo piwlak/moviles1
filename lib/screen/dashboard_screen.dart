@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:day_night_switcher/day_night_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:moviles1/provider/theme_provider.dart';

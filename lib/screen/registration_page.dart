@@ -6,7 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hexcolor/hexcolor.dart';
 import '../common/theme_helper.dart';
 import 'profile_page.dart';
-import 'widgets/header_widget.dart';
+import '../widgets/header_widget.dart';
 
 import 'package:flutter/services.dart';
 import 'package:image_cropper/image_cropper.dart';
@@ -33,7 +33,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
       final image = await ImagePicker().pickImage(source: source);
       if (image == null) return;
       File? img = File(image.path);
-      img = await _cropImage(imageFile: img);
       setState(() {
         _image = img;
         Navigator.of(context).pop();
@@ -42,13 +41,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
       print(e);
       Navigator.of(context).pop();
     }
-  }
-
-  Future<File?> _cropImage({required File imageFile}) async {
-    CroppedFile? croppedImage =
-        await ImageCropper().cropImage(sourcePath: imageFile.path);
-    if (croppedImage == null) return null;
-    return File(croppedImage.path);
   }
 
   void _showSelectPhotoOptions(BuildContext context) {
