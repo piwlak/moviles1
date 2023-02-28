@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:moviles1/settings/textStyleSettings.dart';
 
 class ThemeApp {

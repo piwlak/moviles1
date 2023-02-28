@@ -1,17 +1,12 @@
 import 'dart:io';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hexcolor/hexcolor.dart';
 import '../common/theme_helper.dart';
 import 'profile_page.dart';
 import '../widgets/header_widget.dart';
-
 import 'package:flutter/services.dart';
-import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
-import '../widgets/common_buttons.dart';
 import 'select_photo_options_screen.dart';
 
 class RegistrationPage extends StatefulWidget {

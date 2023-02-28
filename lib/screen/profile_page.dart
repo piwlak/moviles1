@@ -1,12 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
+import 'package:moviles1/routes.dart';
+import 'package:day_night_switcher/day_night_switcher.dart';
+import 'package:moviles1/provider/theme_provider.dart';
+import 'package:moviles1/settings/styles_settings.dart';
+import 'package:provider/provider.dart';
 import 'splash_screen.dart';
-import 'login_screen.dart';
-import 'forgot_password_page.dart';
-import 'forgot_password_verification_page.dart';
-import 'registration_page.dart';
 import '../widgets/header_widget.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -19,11 +18,15 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   double _drawerIconSize = 24;
   double _drawerFontSize = 17;
+  bool isDarkModeEnabled = false;
 
   @override
   Widget build(BuildContext context) {
+    ThemeProvider theme = Provider.of<ThemeProvider>(context);
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text('SocialiTec'),
+      ),
       drawer: Drawer(
         child: Container(
           decoration: BoxDecoration(
@@ -40,30 +43,13 @@ class _ProfilePageState extends State<ProfilePage> {
               ])),
           child: ListView(
             children: [
-              DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColor,
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    stops: [0.0, 1.0],
-                    colors: [
-                      Theme.of(context).primaryColor,
-                      Theme.of(context).accentColor,
-                    ],
+              const UserAccountsDrawerHeader(
+                  currentAccountPicture: CircleAvatar(
+                    backgroundImage: NetworkImage(
+                        'https://static-cdn.jtvnw.net/jtv_user_pictures/9ee71df5-13f1-4148-b1fd-3a089e4e2cfc-profile_image-70x70.png'),
                   ),
-                ),
-                child: Container(
-                  alignment: Alignment.bottomLeft,
-                  child: Text(
-                    "FlutterTutorial.Net",
-                    style: TextStyle(
-                        fontSize: 25,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ),
+                  accountName: Text('Lorena'),
+                  accountEmail: Text('LorenaOlalde@gmail.com')),
               ListTile(
                 leading: Icon(
                   Icons.screen_lock_landscape_rounded,
@@ -83,23 +69,6 @@ class _ProfilePageState extends State<ProfilePage> {
                               SplashScreen(title: "Splash Screen")));
                 },
               ),
-              ListTile(
-                leading: Icon(Icons.login_rounded,
-                    size: _drawerIconSize,
-                    color: Theme.of(context).accentColor),
-                title: Text(
-                  'Login Page',
-                  style: TextStyle(
-                      fontSize: _drawerFontSize,
-                      color: Theme.of(context).accentColor),
-                ),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => LoginPage()),
-                  );
-                },
-              ),
               Divider(
                 color: Theme.of(context).primaryColor,
                 height: 1,
@@ -115,10 +84,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       color: Theme.of(context).accentColor),
                 ),
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => RegistrationPage()),
-                  );
+                  Navigator.pushNamed(context, Route_registration);
                 },
               ),
               Divider(
@@ -138,11 +104,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       color: Theme.of(context).accentColor),
                 ),
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ForgotPasswordPage()),
-                  );
+                  Navigator.pushNamed(context, Route_forgotPass);
                 },
               ),
               Divider(
@@ -162,11 +124,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       color: Theme.of(context).accentColor),
                 ),
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ForgotPasswordVerificationPage()),
-                  );
+                  Navigator.pushNamed(context, Route_verificationPass);
                 },
               ),
               Divider(
@@ -189,6 +147,23 @@ class _ProfilePageState extends State<ProfilePage> {
                   SystemNavigator.pop();
                 },
               ),
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    DayNightSwitcher(
+                        isDarkModeEnabled: isDarkModeEnabled,
+                        onStateChanged: (isDarkModeEnabled) {
+                          isDarkModeEnabled
+                              ? theme
+                                  .setthemeData(StyleSettings.DarTheme(context))
+                              : theme.setthemeData(
+                                  StyleSettings.lightTheme(context));
+                          this.isDarkModeEnabled = isDarkModeEnabled;
+                          setState(() {});
+                        })
+                  ])
             ],
           ),
         ),
@@ -201,6 +176,7 @@ class _ProfilePageState extends State<ProfilePage> {
               child: HeaderWidget(100, false, Icons.house_rounded),
             ),
             Container(
+                /*
               alignment: Alignment.center,
               margin: EdgeInsets.fromLTRB(25, 10, 25, 10),
               padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
@@ -277,24 +253,22 @@ class _ProfilePageState extends State<ProfilePage> {
                                               horizontal: 12, vertical: 4),
                                           leading: Icon(Icons.my_location),
                                           title: Text("Location"),
-                                          subtitle: Text("USA"),
+                                          subtitle: Text("Mexico"),
                                         ),
                                         ListTile(
                                           leading: Icon(Icons.email),
                                           title: Text("Email"),
-                                          subtitle:
-                                              Text("donaldtrump@gmail.com"),
+                                          subtitle: Text("lorena@gmail.com"),
                                         ),
                                         ListTile(
                                           leading: Icon(Icons.phone),
                                           title: Text("Phone"),
-                                          subtitle: Text("99--99876-56"),
+                                          subtitle: Text("1234567890"),
                                         ),
                                         ListTile(
                                           leading: Icon(Icons.person),
                                           title: Text("About Me"),
-                                          subtitle: Text(
-                                              "This is a about me link and you can khow about me in this section."),
+                                          subtitle: Text("..."),
                                         ),
                                       ],
                                     ),
@@ -308,8 +282,8 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                   )
                 ],
-              ),
-            )
+              ),*/
+                )
           ],
         ),
       ),
