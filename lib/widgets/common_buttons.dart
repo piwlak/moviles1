@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class CommonButtons extends StatelessWidget {
@@ -21,7 +20,7 @@ class CommonButtons extends StatelessWidget {
       onPressed: onTap,
       style: ElevatedButton.styleFrom(
         elevation: 5,
-        primary: backgroundColor,
+        primary: Theme.of(context).colorScheme.primary,
         shape: const StadiumBorder(),
       ),
       child: Padding(

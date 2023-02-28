@@ -38,8 +38,8 @@ class _ProfilePageState extends State<ProfilePage> {
                 1.0
               ],
                   colors: [
-                Theme.of(context).primaryColor.withOpacity(0.2),
-                Theme.of(context).accentColor.withOpacity(0.5),
+                Theme.of(context).colorScheme.background.withOpacity(0.2),
+                Theme.of(context).colorScheme.secondary.withOpacity(0.5),
               ])),
           child: ListView(
             children: [
@@ -51,15 +51,14 @@ class _ProfilePageState extends State<ProfilePage> {
                   accountName: Text('Lorena'),
                   accountEmail: Text('LorenaOlalde@gmail.com')),
               ListTile(
-                leading: Icon(
-                  Icons.screen_lock_landscape_rounded,
-                  size: _drawerIconSize,
-                  color: Theme.of(context).accentColor,
-                ),
+                leading: Icon(Icons.screen_lock_landscape_rounded,
+                    size: _drawerIconSize,
+                    color: Theme.of(context).colorScheme.onSecondary),
                 title: Text(
                   'Splash Screen',
                   style: TextStyle(
-                      fontSize: 17, color: Theme.of(context).accentColor),
+                      fontSize: 17,
+                      color: Theme.of(context).colorScheme.onSecondary),
                 ),
                 onTap: () {
                   Navigator.push(
@@ -70,82 +69,86 @@ class _ProfilePageState extends State<ProfilePage> {
                 },
               ),
               Divider(
-                color: Theme.of(context).primaryColor,
+                color: Theme.of(context).colorScheme.secondary,
                 height: 1,
               ),
               ListTile(
                 leading: Icon(Icons.person_add_alt_1,
                     size: _drawerIconSize,
-                    color: Theme.of(context).accentColor),
+                    color: Theme.of(context).colorScheme.onSecondary),
                 title: Text(
                   'Registration Page',
                   style: TextStyle(
                       fontSize: _drawerFontSize,
-                      color: Theme.of(context).accentColor),
+                      color: Theme.of(context).colorScheme.onSecondary),
                 ),
                 onTap: () {
                   Navigator.pushNamed(context, Route_registration);
                 },
               ),
               Divider(
-                color: Theme.of(context).primaryColor,
+                color: Theme.of(context).colorScheme.secondary,
                 height: 1,
               ),
               ListTile(
                 leading: Icon(
                   Icons.password_rounded,
                   size: _drawerIconSize,
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).colorScheme.onSecondary,
                 ),
                 title: Text(
                   'Forgot Password Page',
                   style: TextStyle(
                       fontSize: _drawerFontSize,
-                      color: Theme.of(context).accentColor),
+                      color: Theme.of(context).colorScheme.onSecondary),
                 ),
                 onTap: () {
                   Navigator.pushNamed(context, Route_forgotPass);
                 },
               ),
               Divider(
-                color: Theme.of(context).primaryColor,
+                color: Theme.of(context).colorScheme.secondary,
                 height: 1,
               ),
               ListTile(
                 leading: Icon(
                   Icons.verified_user_sharp,
                   size: _drawerIconSize,
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).colorScheme.onSecondary,
                 ),
                 title: Text(
                   'Verification Page',
                   style: TextStyle(
                       fontSize: _drawerFontSize,
-                      color: Theme.of(context).accentColor),
+                      color: Theme.of(context).colorScheme.onSecondary),
                 ),
                 onTap: () {
                   Navigator.pushNamed(context, Route_verificationPass);
                 },
               ),
               Divider(
-                color: Theme.of(context).primaryColor,
+                color: Theme.of(context).colorScheme.secondary,
                 height: 1,
               ),
               ListTile(
                 leading: Icon(
                   Icons.logout_rounded,
                   size: _drawerIconSize,
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).colorScheme.onSecondary,
                 ),
                 title: Text(
                   'Logout',
                   style: TextStyle(
                       fontSize: _drawerFontSize,
-                      color: Theme.of(context).accentColor),
+                      color: Theme.of(context).colorScheme.onSecondary),
                 ),
                 onTap: () {
                   SystemNavigator.pop();
                 },
+              ),
+              Divider(
+                color: Theme.of(context).colorScheme.secondary,
+                height: 1,
               ),
               Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -159,7 +162,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               ? theme
                                   .setthemeData(StyleSettings.DarTheme(context))
                               : theme.setthemeData(
-                                  StyleSettings.lightTheme(context));
+                                  StyleSettings.personaltheme(context));
                           this.isDarkModeEnabled = isDarkModeEnabled;
                           setState(() {});
                         })
@@ -176,6 +179,7 @@ class _ProfilePageState extends State<ProfilePage> {
               child: HeaderWidget(100, false, Icons.house_rounded),
             ),
             Container(
+
                 /*
               alignment: Alignment.center,
               margin: EdgeInsets.fromLTRB(25, 10, 25, 10),
@@ -193,7 +197,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           color: Colors.black12,
                           blurRadius: 20,
                           offset: const Offset(5, 5),
-                        ),
+                        ),3
                       ],
                     ),
                     child: Icon(

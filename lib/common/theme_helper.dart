@@ -37,8 +37,8 @@ class ThemeHelper {
 
   BoxDecoration buttonBoxDecoration(BuildContext context,
       [String color1 = "", String color2 = ""]) {
-    Color c1 = Theme.of(context).primaryColor;
-    Color c2 = Theme.of(context).accentColor;
+    Color c1 = Theme.of(context).colorScheme.primary;
+    Color c2 = Theme.of(context).colorScheme.secondary;
     if (color1.isEmpty == false) {
       c1 = HexColor(color1);
     }
@@ -97,5 +97,3 @@ class ThemeHelper {
     );
   }
 }
-
-class LoginFormStyle {}

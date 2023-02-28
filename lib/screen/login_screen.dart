@@ -6,6 +6,7 @@ import 'forgot_password_page.dart';
 import 'profile_page.dart';
 import 'registration_page.dart';
 import '../widgets/header_widget.dart';
+import '../settings/textStyleSettings.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -81,7 +82,9 @@ class MobileWidgetLogin extends StatelessWidget {
             ),
             Text(
               'Signin into your account',
-              style: TextStyle(color: Colors.grey),
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.primary.withOpacity(0.4),
+              ),
             ),
             SizedBox(height: 30.0),
             Form(
@@ -129,7 +132,10 @@ class MobileWidgetLogin extends StatelessWidget {
                         child: Text(
                           "Forgot your password?",
                           style: TextStyle(
-                            color: Colors.grey,
+                            color: Theme.of(context)
+                                .colorScheme
+                                .primary
+                                .withOpacity(0.4),
                           ),
                         ),
                       ),
@@ -175,7 +181,7 @@ class MobileWidgetLogin extends StatelessWidget {
                             },
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              color: Theme.of(context).accentColor),
+                              color: Theme.of(context).colorScheme.primary),
                         ),
                       ])),
                     ),
