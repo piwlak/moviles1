@@ -37,8 +37,24 @@ class _LoginPageState extends State<LoginPage> {
                       .account_circle_rounded), //let's create a common header widget
             ),
             SafeArea(
-              child: Responsive(mobile: MobileWelcomeScreen),
-            ),
+                child: Responsive(
+              mobile: MobileWidgetLogin(
+                formKey: _formKey,
+              ),
+              desktop: Row(children: [
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        width: 450,
+                        child: MobileWidgetLogin(formKey: _formKey),
+                      )
+                    ],
+                  ),
+                )
+              ]),
+            )),
           ],
         ),
       ),
@@ -46,8 +62,8 @@ class _LoginPageState extends State<LoginPage> {
   }
 }
 
-class MobileWelcomeScreen extends StatelessWidget {
-  const MobileWelcomeScreen({
+class MobileWidgetLogin extends StatelessWidget {
+  const MobileWidgetLogin({
     super.key,
     required GlobalKey<FormState> formKey,
   }) : _formKey = formKey;
