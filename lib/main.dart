@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moviles1/provider/theme_provider.dart';
 import 'package:moviles1/routes.dart';
-import 'package:moviles1/screen/login_screen.dart';
 import 'package:moviles1/screen/splash_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -33,9 +32,9 @@ class PMSNApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: theme.getthemeData(),
         onGenerateRoute: MyRoutes.generatroute,
-        initialRoute: Route_login,
+        initialRoute: Route_SplasScreen,
         //routes: getApplicationRoutes(),
-        home: LoginPage(),
+        home: SplashScreen(),
       ),
     );
   }
