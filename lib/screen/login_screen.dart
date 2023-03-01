@@ -71,8 +71,7 @@ class MobileWidgetLogin extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-        margin:
-            EdgeInsets.fromLTRB(20, 10, 20, 10), // This will be the login form
+        margin: EdgeInsets.fromLTRB(20, 10, 20, 10),
         child: Column(
           children: [
             Text(

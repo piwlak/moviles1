@@ -34,11 +34,6 @@ class MyRoutes {
         return MaterialPageRoute(builder: (_) => ForgotPasswordPage());
       case '/verificationPass':
         return MaterialPageRoute(
-            builder: (_) => SplashScreen(
-                  title: 'Splash Screen',
-                ));
-      case '/SplashScreen':
-        return MaterialPageRoute(
             builder: (_) => ForgotPasswordVerificationPage());
       default:
         return MaterialPageRoute(builder: (_) => LoginPage());

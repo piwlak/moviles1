@@ -4,10 +4,6 @@ class Appbar_Widget extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text(
-        "Profile Page",
-        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-      ),
       elevation: 0.5,
       iconTheme: IconThemeData(color: Colors.white),
       flexibleSpace: Container(

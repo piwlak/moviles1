@@ -1,3 +1,5 @@
 {
-    "cmake.configureOnOpen": true
+    "cmake.configureOnOpen": true,
+    "terminal.integrated.shell.windows": "E:\\Aplicaciones Principales\\Git\\bin\\bash.exe"
+
 }

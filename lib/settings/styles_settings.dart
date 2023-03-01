@@ -4,8 +4,11 @@ class StyleSettings {
   static ThemeData lightTheme(BuildContext context) {
     final theme = ThemeData.light();
     return theme.copyWith(
-        colorScheme:
-            Theme.of(context).colorScheme.copyWith(primary: Colors.blue));
+        colorScheme: Theme.of(context).colorScheme.copyWith(
+            primary: Color.fromARGB(255, 255, 65, 230),
+            primaryContainer: Colors.pink,
+            onPrimaryContainer: Colors.pink,
+            onPrimary: Color.fromARGB(255, 255, 255, 255)));
   }
 
   static ThemeData DarTheme(BuildContext context) {

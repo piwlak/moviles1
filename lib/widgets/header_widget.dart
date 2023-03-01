@@ -74,7 +74,7 @@ class _HeaderWidgetState extends State<HeaderWidget> {
               decoration: new BoxDecoration(
                 gradient: new LinearGradient(
                     colors: [
-                      Theme.of(context).primaryColor,
+                      Theme.of(context).primaryColor, //cambio de color
                       Theme.of(context).accentColor,
                     ],
                     begin: const FractionalOffset(0.0, 0.0),
