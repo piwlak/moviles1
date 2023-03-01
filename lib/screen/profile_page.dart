@@ -64,8 +64,9 @@ class _ProfilePageState extends State<ProfilePage> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) =>
-                              SplashScreen(title: "Splash Screen")));
+                          builder: (context) => SplashScreen(
+                                title: '',
+                              )));
                 },
               ),
               Divider(

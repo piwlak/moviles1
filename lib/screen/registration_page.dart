@@ -284,8 +284,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                     context: context,
                                     builder: (BuildContext context) {
                                       return ThemeHelper().alartDialog(
-                                          "Google Plus",
-                                          "You tap on GooglePlus social icon.",
+                                          "Google",
+                                          "You tap on Google social icon.",
                                           context);
                                     },
                                   );

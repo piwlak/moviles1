@@ -33,9 +33,11 @@ class PMSNApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: theme.getthemeData(),
         onGenerateRoute: MyRoutes.generatroute,
-        initialRoute: Route_login,
+        initialRoute: Route_SplasScreen,
         //routes: getApplicationRoutes(),
-        home: LoginPage(),
+        home: SplashScreen(
+          title: '',
+        ),
       ),
     );
   }

@@ -32,7 +32,7 @@ class _LoginPageState extends State<LoginPage> {
                   _headerHeight,
                   true,
                   Icons
-                      .account_circle_rounded), //let's create a common header widget
+                      .heart_broken_outlined), //let's create a common header widget
             ),
             SafeArea(
                 child: Responsive(
