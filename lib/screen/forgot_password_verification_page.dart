@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:otp_text_field/otp_field.dart';
+import 'package:otp_text_field/otp_field_style.dart';
 import 'package:otp_text_field/style.dart';
 import '../common/theme_helper.dart';
 import 'profile_page.dart';
@@ -24,7 +25,7 @@ class _ForgotPasswordVerificationPageState
     double _headerHeight = 300;
 
     return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).colorScheme.background,
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -51,7 +52,9 @@ class _ForgotPasswordVerificationPageState
                               style: TextStyle(
                                   fontSize: 35,
                                   fontWeight: FontWeight.bold,
-                                  color: Colors.black54),
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onBackground),
                               // textAlign: TextAlign.center,
                             ),
                             SizedBox(
@@ -62,7 +65,10 @@ class _ForgotPasswordVerificationPageState
                               style: TextStyle(
                                   // fontSize: 20,
                                   fontWeight: FontWeight.bold,
-                                  color: Colors.black54),
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onBackground
+                                      .withOpacity(0.8)),
                               // textAlign: TextAlign.center,
                             ),
                           ],
@@ -74,12 +80,16 @@ class _ForgotPasswordVerificationPageState
                         child: Column(
                           children: <Widget>[
                             OTPTextField(
+                              otpFieldStyle: OtpFieldStyle(
+                                  enabledBorderColor: Theme.of(context)
+                                      .colorScheme
+                                      .onBackground),
                               length: 4,
                               width: 300,
                               fieldWidth: 50,
                               style: TextStyle(fontSize: 30),
                               textFieldAlignment: MainAxisAlignment.spaceAround,
-                              fieldStyle: FieldStyle.underline,
+                              fieldStyle: FieldStyle.box,
                               onCompleted: (pin) {
                                 setState(() {
                                   _pinSuccess = true;
@@ -93,7 +103,9 @@ class _ForgotPasswordVerificationPageState
                                   TextSpan(
                                     text: "If you didn't receive a code! ",
                                     style: TextStyle(
-                                      color: Colors.black38,
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onBackground,
                                     ),
                                   ),
                                   TextSpan(
@@ -114,7 +126,7 @@ class _ForgotPasswordVerificationPageState
                                         fontWeight: FontWeight.bold,
                                         color: Theme.of(context)
                                             .colorScheme
-                                            .primary),
+                                            .onPrimaryContainer),
                                   ),
                                 ],
                               ),

@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 class TextStyleSettings {
   TextStyleSettings();
 
-  TextStyle get H1 => TextStyle(
-      //fontSize: 60,
-      fontWeight: FontWeight.bold);
+  Color? get textcolor => Colors.black;
 
   TextStyle get H2 => TextStyle(
       //fontSize: 35,

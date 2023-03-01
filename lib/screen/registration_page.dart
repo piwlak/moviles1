@@ -65,7 +65,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: SingleChildScrollView(
         child: Stack(
           children: [
@@ -114,6 +114,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         ),
                         Container(
                           child: TextFormField(
+                            style: TextStyle(color: Colors.black),
                             decoration: ThemeHelper().textInputDecoration(
                                 'First Name', 'Enter your first name'),
                             validator: (val) {
@@ -130,6 +131,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         ),
                         Container(
                           child: TextFormField(
+                            style: TextStyle(color: Colors.black),
                             decoration: ThemeHelper().textInputDecoration(
                                 'Last Name', 'Enter your last name'),
                             validator: (val) {
@@ -144,6 +146,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         SizedBox(height: 20.0),
                         Container(
                           child: TextFormField(
+                            style: TextStyle(color: Colors.black),
                             decoration: ThemeHelper().textInputDecoration(
                                 "E-mail address", "Enter your email"),
                             keyboardType: TextInputType.emailAddress,
@@ -163,6 +166,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         SizedBox(height: 20.0),
                         Container(
                           child: TextFormField(
+                            style: TextStyle(color: Colors.black),
                             decoration: ThemeHelper().textInputDecoration(
                                 "Mobile Number", "Enter your mobile number"),
                             keyboardType: TextInputType.phone,
@@ -180,6 +184,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         SizedBox(height: 20.0),
                         Container(
                           child: TextFormField(
+                            style: TextStyle(color: Colors.black),
                             obscureText: true,
                             decoration: ThemeHelper().textInputDecoration(
                                 "Password*", "Enter your password"),

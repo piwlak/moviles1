@@ -22,7 +22,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -77,12 +77,16 @@ class MobileWidgetLogin extends StatelessWidget {
           children: [
             Text(
               'SocialiTec',
-              style: TextStyle(fontSize: 60, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  color: Theme.of(context).colorScheme.onBackground,
+                  fontSize: 60,
+                  fontWeight: FontWeight.bold),
             ),
             Text(
               'Signin into your account',
               style: TextStyle(
-                color: Theme.of(context).colorScheme.primary.withOpacity(0.4),
+                color:
+                    Theme.of(context).colorScheme.onBackground.withOpacity(0.4),
               ),
             ),
             SizedBox(height: 30.0),
@@ -92,8 +96,9 @@ class MobileWidgetLogin extends StatelessWidget {
                   children: [
                     Container(
                       child: TextFormField(
+                          style: TextStyle(color: Colors.black),
                           decoration: ThemeHelper().textInputDecoration(
-                              'User Name', 'Enter your user name'),
+                              'User Name', 'Enter your user name', context),
                           validator: (val) {
                             if (val!.isEmpty) {
                               return "Please enter your User Name";
@@ -105,9 +110,10 @@ class MobileWidgetLogin extends StatelessWidget {
                     SizedBox(height: 30.0),
                     Container(
                       child: TextFormField(
-                          obscureText: true,
+                          style: TextStyle(color: Colors.black),
+                          obscureText: false,
                           decoration: ThemeHelper().textInputDecoration(
-                              'Password', 'Enter your password'),
+                              'Password', 'Enter your password', context),
                           validator: (val) {
                             if (val!.isEmpty) {
                               return "Please enter your Password";
@@ -133,7 +139,7 @@ class MobileWidgetLogin extends StatelessWidget {
                           style: TextStyle(
                             color: Theme.of(context)
                                 .colorScheme
-                                .primary
+                                .onBackground
                                 .withOpacity(0.4),
                           ),
                         ),
@@ -167,7 +173,12 @@ class MobileWidgetLogin extends StatelessWidget {
                       margin: EdgeInsets.fromLTRB(10, 20, 10, 20),
                       //child: Text('Don\'t have an account? Create'),
                       child: Text.rich(TextSpan(children: [
-                        TextSpan(text: "Don\'t have an account? "),
+                        TextSpan(
+                            text: "Don\'t have an account? ",
+                            style: TextStyle(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onBackground)),
                         TextSpan(
                           text: 'Create',
                           recognizer: TapGestureRecognizer()
@@ -180,7 +191,9 @@ class MobileWidgetLogin extends StatelessWidget {
                             },
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              color: Theme.of(context).colorScheme.primary),
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onPrimaryContainer),
                         ),
                       ])),
                     ),

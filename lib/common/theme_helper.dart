@@ -3,10 +3,12 @@ import 'package:hexcolor/hexcolor.dart';
 
 class ThemeHelper {
   InputDecoration textInputDecoration(
-      [String lableText = "", String hintText = ""]) {
+      [String lableText = "", String hintText = "", BuildContext? context]) {
     return InputDecoration(
+      labelStyle: TextStyle(color: Color.fromARGB(255, 146, 146, 146)),
       labelText: lableText,
       hintText: hintText,
+      hintStyle: TextStyle(color: Colors.black87),
       fillColor: Colors.white,
       filled: true,
       contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 10),

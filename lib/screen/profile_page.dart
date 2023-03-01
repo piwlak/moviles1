@@ -61,12 +61,8 @@ class _ProfilePageState extends State<ProfilePage> {
                       color: Theme.of(context).colorScheme.onSecondary),
                 ),
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => SplashScreen(
-                                title: '',
-                              )));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => SplashScreen()));
                 },
               ),
               Divider(

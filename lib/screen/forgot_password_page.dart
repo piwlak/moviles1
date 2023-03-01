@@ -20,7 +20,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   Widget build(BuildContext context) {
     double _headerHeight = 300;
     return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).colorScheme.background,
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -47,7 +47,9 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                               style: TextStyle(
                                   fontSize: 35,
                                   fontWeight: FontWeight.bold,
-                                  color: Colors.black54),
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onBackground),
                               // textAlign: TextAlign.center,
                             ),
                             SizedBox(
@@ -58,7 +60,9 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                               style: TextStyle(
                                   // fontSize: 20,
                                   fontWeight: FontWeight.bold,
-                                  color: Colors.black54),
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onBackground),
                               // textAlign: TextAlign.center,
                             ),
                             SizedBox(
@@ -67,7 +71,10 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                             Text(
                               'We will email you a verification code to check your authenticity.',
                               style: TextStyle(
-                                color: Colors.black38,
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onBackground
+                                    .withOpacity(0.4),
                                 // fontSize: 20,
                               ),
                               // textAlign: TextAlign.center,
@@ -82,6 +89,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                           children: <Widget>[
                             Container(
                               child: TextFormField(
+                                style: TextStyle(color: Colors.black),
                                 decoration: ThemeHelper().textInputDecoration(
                                     "Email", "Enter your email"),
                                 validator: (val) {
@@ -148,7 +156,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                                         fontWeight: FontWeight.bold,
                                         color: Theme.of(context)
                                             .colorScheme
-                                            .primary),
+                                            .onPrimaryContainer),
                                   ),
                                 ],
                               ),
