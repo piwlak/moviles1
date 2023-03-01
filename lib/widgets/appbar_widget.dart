@@ -12,8 +12,8 @@ class Appbar_Widget extends StatelessWidget implements PreferredSizeWidget {
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: <Color>[
+              ThemeData().primaryColorLight,
               Theme.of(context).primaryColor,
-              Theme.of(context).accentColor,
             ])),
       ),
       actions: [

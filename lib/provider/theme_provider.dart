@@ -5,7 +5,7 @@ class ThemeProvider with ChangeNotifier {
   //BuildContext context;
   ThemeData? _themeData;
   ThemeProvider(BuildContext context) {
-    _themeData = StyleSettings.lightTheme(context);
+    _themeData = StyleSettings.personaltheme(context);
     //primarySwatch:Colors.blue;
   }
 

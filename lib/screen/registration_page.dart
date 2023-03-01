@@ -94,12 +94,12 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                 width: 200.0,
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  color: Colors.grey.shade200,
+                                  color: Colors.pink.shade200,
                                 ),
                                 child: Center(
                                   child: _image == null
                                       ? const Text(
-                                          'No image selected',
+                                          'Selecciona tu Imagen',
                                           style: TextStyle(fontSize: 20),
                                         )
                                       : CircleAvatar(
@@ -148,9 +148,11 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                 "E-mail address", "Enter your email"),
                             keyboardType: TextInputType.emailAddress,
                             validator: (val) {
-                              if (!(val!.isEmpty) &&
-                                  !RegExp(r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$")
-                                      .hasMatch(val)) {
+                              if ((val!.isEmpty)) {
+                                return "Enter a email address";
+                              } else if (!RegExp(
+                                      r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$")
+                                  .hasMatch(val)) {
                                 return "Enter a valid email address";
                               }
                               return null;
@@ -165,8 +167,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                 "Mobile Number", "Enter your mobile number"),
                             keyboardType: TextInputType.phone,
                             validator: (val) {
-                              if (!(val!.isEmpty) &&
-                                  !RegExp(r"^(\d+)*$").hasMatch(val)) {
+                              if ((val!.isEmpty)) {
+                                return "Enter a phone number";
+                              } else if (!RegExp(r"^(\d+)*$").hasMatch(val)) {
                                 return "Enter a valid phone number";
                               }
                               return null;
@@ -271,7 +274,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           children: [
                             GestureDetector(
                               child: FaIcon(
-                                FontAwesomeIcons.googlePlus,
+                                FontAwesomeIcons.google,
                                 size: 35,
                                 color: HexColor("#EC2D2F"),
                               ),
@@ -281,8 +284,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                     context: context,
                                     builder: (BuildContext context) {
                                       return ThemeHelper().alartDialog(
-                                          "Google Plus",
-                                          "You tap on GooglePlus social icon.",
+                                          "Google",
+                                          "You tap on Google social icon.",
                                           context);
                                     },
                                   );

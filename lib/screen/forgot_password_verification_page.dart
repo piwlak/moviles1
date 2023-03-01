@@ -112,7 +112,9 @@ class _ForgotPasswordVerificationPageState
                                       },
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        color: Colors.orange),
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary),
                                   ),
                                 ],
                               ),

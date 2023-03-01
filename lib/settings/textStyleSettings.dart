@@ -14,7 +14,7 @@ class TextStyleSettings {
 
   TextStyle get b2 => TextStyle(
       //fontSize: 60,
-      color: Colors.black38);
+      color: Colors.grey);
 
   TextStyle get buttontext => TextStyle(
       //fontSize: 60,

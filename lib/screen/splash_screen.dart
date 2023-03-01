@@ -37,8 +37,8 @@ class _SplashScreenState extends State<SplashScreen> {
       decoration: new BoxDecoration(
         gradient: new LinearGradient(
           colors: [
-            Theme.of(context).accentColor,
-            Theme.of(context).primaryColor
+            Theme.of(context).colorScheme.secondary,
+            Theme.of(context).colorScheme.primary
           ],
           begin: const FractionalOffset(0, 0),
           end: const FractionalOffset(1.0, 0.0),
@@ -58,6 +58,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 child: Icon(
                   Icons.android_outlined,
                   size: 128,
+                  color: Theme.of(context).colorScheme.primary,
                 ), //put your logo here
               ),
             ),
