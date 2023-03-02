@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:moviles1/routes.dart';
-import 'package:day_night_switcher/day_night_switcher.dart';
 import 'package:moviles1/provider/theme_provider.dart';
-import 'package:moviles1/settings/styles_settings.dart';
 import 'package:provider/provider.dart';
 import 'splash_screen.dart';
 import '../widgets/header_widget.dart';
@@ -147,23 +145,22 @@ class _ProfilePageState extends State<ProfilePage> {
                 color: Theme.of(context).colorScheme.secondary,
                 height: 1,
               ),
-              Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    DayNightSwitcher(
-                        isDarkModeEnabled: isDarkModeEnabled,
-                        onStateChanged: (isDarkModeEnabled) {
-                          isDarkModeEnabled
-                              ? theme
-                                  .setthemeData(StyleSettings.DarTheme(context))
-                              : theme.setthemeData(
-                                  StyleSettings.personaltheme(context));
-                          this.isDarkModeEnabled = isDarkModeEnabled;
-                          setState(() {});
-                        })
-                  ])
+              ListTile(
+                leading: Icon(
+                  Icons.settings,
+                  size: _drawerIconSize,
+                  color: Theme.of(context).colorScheme.onSecondary,
+                ),
+                title: Text(
+                  'Settings',
+                  style: TextStyle(
+                      fontSize: _drawerFontSize,
+                      color: Theme.of(context).colorScheme.onSecondary),
+                ),
+                onTap: () {
+                  //display de ScreenSetings
+                },
+              ),
             ],
           ),
         ),
