@@ -158,7 +158,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       color: Theme.of(context).colorScheme.onSecondary),
                 ),
                 onTap: () {
-                  //display de ScreenSetings
+                  Navigator.pushNamed(context, Route_Settings);
                 },
               ),
             ],

@@ -5,25 +5,25 @@ class ThemeHelper {
   InputDecoration textInputDecoration(
       [String lableText = "", String hintText = "", BuildContext? context]) {
     return InputDecoration(
-      labelStyle: TextStyle(color: Color.fromARGB(255, 146, 146, 146)),
+      labelStyle: const TextStyle(color: Color.fromARGB(255, 146, 146, 146)),
       labelText: lableText,
       hintText: hintText,
-      hintStyle: TextStyle(color: Colors.black87),
+      hintStyle: const TextStyle(color: Colors.black87),
       fillColor: Colors.white,
       filled: true,
-      contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+      contentPadding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
       focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(100.0),
-          borderSide: BorderSide(color: Colors.grey)),
+          borderSide: const BorderSide(color: Colors.grey)),
       enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(100.0),
           borderSide: BorderSide(color: Colors.grey.shade400)),
       errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(100.0),
-          borderSide: BorderSide(color: Colors.red, width: 2.0)),
+          borderSide: const BorderSide(color: Colors.red, width: 2.0)),
       focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(100.0),
-          borderSide: BorderSide(color: Colors.red, width: 2.0)),
+          borderSide: const BorderSide(color: Colors.red, width: 2.0)),
     );
   }
 

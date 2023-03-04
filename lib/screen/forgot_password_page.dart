@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../common/theme_helper.dart';
 import 'forgot_password_verification_page.dart';
-import 'login_screen.dart';
+import 'LoginPageMobile.dart';
 import 'package:moviles1/widgets/header_widget.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
@@ -149,7 +149,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  LoginPage()),
+                                                  LoginPageMobile()),
                                         );
                                       },
                                     style: TextStyle(

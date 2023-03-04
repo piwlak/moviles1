@@ -3,11 +3,10 @@ import 'package:flutter/material.dart';
 class StyleSettings {
   static ThemeData lightTheme(BuildContext context) {
     final theme = ThemeData.light();
-    return theme.copyWith(
-        colorScheme: Theme.of(context).colorScheme.copyWith());
+    return theme.copyWith();
   }
 
-  static ThemeData DarTheme(BuildContext context) {
+  static ThemeData DarkTheme(BuildContext context) {
     final theme = ThemeData.dark();
     return theme.copyWith(
         colorScheme: Theme.of(context).colorScheme.copyWith(
