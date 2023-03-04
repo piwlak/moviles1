@@ -40,7 +40,7 @@ class _LoginPageState extends State<LoginPageDestop> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
-                    width: 600,
+                    width: 750,
                     child: Container(
                         padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
                         margin: EdgeInsets.fromLTRB(20, 10, 20, 10),

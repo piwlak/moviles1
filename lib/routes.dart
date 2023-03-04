@@ -6,7 +6,7 @@ import 'package:moviles1/screen/LoginPageMobile.dart';
 import 'package:moviles1/screen/profile_page.dart';
 import 'package:moviles1/screen/registration_page.dart';
 import 'package:moviles1/screen/splash_screen.dart';
-import 'package:moviles1/screen/onBoardScreen.dart';
+import 'package:moviles1/screen/onBoardMobile.dart';
 import 'package:moviles1/screen/settings_page.dart';
 
 /*Map<String, WidgetBuilder> getApplicationRoutes() {

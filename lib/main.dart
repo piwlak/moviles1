@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:moviles1/pages/loginpage.dart';
 import 'package:moviles1/provider/theme_provider.dart';
 import 'package:moviles1/routes.dart';
-import 'package:moviles1/screen/settings_page.dart';
-import 'package:moviles1/screen/splash_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+
+import 'provider/provider.dart';
 
 void main() => runApp(MyApp());
 
@@ -24,13 +25,13 @@ class MyApp extends StatelessWidget {
 }
 
 class PMSNApp extends StatelessWidget {
-  const PMSNApp({super.key});
-
+  PMSNApp({super.key});
+  final themecontroller = Get.put(Tema());
   @override
   Widget build(BuildContext context) {
     ThemeProvider theme = Provider.of<ThemeProvider>(context);
     return Sizer(
-      builder: (context, orientation, devicetype) => MaterialApp(
+      builder: (context, orientation, devicetype) => GetMaterialApp(
         debugShowCheckedModeBanner: false,
         theme: theme.getthemeData(),
         onGenerateRoute: MyRoutes.generatroute,
