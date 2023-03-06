@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:settings_ui/settings_ui.dart';
+import 'package:moviles1/common/local_storage.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../provider/theme_provider.dart';
 import '../provider/provider.dart';
 
@@ -13,7 +14,28 @@ class Settings extends StatefulWidget {
 }
 
 class _Settings extends State<Settings> {
-  int _value = 3;
+  late SharedPreferences preferences;
+  int? _value = null;
+
+  void initState() {
+    cargarPreferencias().then((value) => cargar());
+
+    super.initState();
+  }
+
+  void cargar() {
+    if (_value == null) {
+      _value = preferences.setInt("RB", 1) as int?;
+    } else {
+      _value = preferences.getInt("RB");
+    }
+    super.initState();
+  }
+
+  Future<void> cargarPreferencias() async {
+    preferences = await Get.putAsync<SharedPreferences>(
+        () async => await SharedPreferences.getInstance());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +69,7 @@ class _Settings extends State<Settings> {
                         _value = val!;
                       });
                       themecontroller.temaClaro();
+                      preferences.setInt("RB", 1);
                     },
                     title: Text('tema claro'),
                   ),
@@ -58,6 +81,7 @@ class _Settings extends State<Settings> {
                         _value = val!;
                       });
                       themecontroller.temaOscuro();
+                      preferences.setInt("RB", 2);
                     },
                     title: Text('tema obscuro'),
                   ),
@@ -68,7 +92,8 @@ class _Settings extends State<Settings> {
                       setState(() {
                         _value = val!;
                       });
-                      themecontroller.temaPersonalizado(context);
+                      themecontroller.temaPersonalizado();
+                      preferences.setInt("RB", 3);
                     },
                     title: Text('tema Personalizado'),
                   ),

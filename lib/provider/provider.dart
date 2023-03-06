@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:moviles1/provider/theme_provider.dart';
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../settings/styles_settings.dart';
 
 class Tema extends GetxController {
   late SharedPreferences preferences;
@@ -13,7 +9,7 @@ class Tema extends GetxController {
 
   void temaClaro() {
     Get.changeTheme(ThemeData.light());
-    preferences.setBool(prefkey, false);
+    preferences.setString(prefkey, "claro");
   }
 
   void temaOscuro() {
@@ -25,16 +21,16 @@ class Tema extends GetxController {
             surface: Color.fromARGB(255, 69, 4, 122),
             onSurface: Colors.white,
             primary: Color.fromARGB(255, 69, 4, 122),
-            onPrimary: Color.fromARGB(255, 3, 2, 2),
+            onPrimary: Color.fromARGB(255, 255, 255, 255),
             background: Color.fromARGB(255, 0, 0, 0),
             onBackground: Color.fromARGB(255, 255, 255, 255),
             secondary: Color.fromARGB(255, 163, 16, 231),
             onSecondary: Color.fromARGB(255, 221, 148, 255),
             onPrimaryContainer: Color.fromARGB(255, 7, 255, 234))));
-    preferences.setBool(prefkey, true);
+    preferences.setString(prefkey, "oscuro");
   }
 
-  void temaPersonalizado(BuildContext context) {
+  void temaPersonalizado() {
     Get.changeTheme(ThemeData(
         colorScheme: ColorScheme(
             error: Colors.red,
@@ -49,6 +45,7 @@ class Tema extends GetxController {
             secondary: Color.fromARGB(255, 163, 16, 231),
             onSecondary: Color.fromARGB(255, 221, 148, 255),
             onPrimaryContainer: Colors.pink)));
+    preferences.setString(prefkey, "personalizado");
   }
 
   @override
@@ -59,14 +56,22 @@ class Tema extends GetxController {
   }
 
   void cargarTema() {
-    bool? isDarkMode = preferences.getBool(prefkey);
+    String? whichtheme = preferences.getString(prefkey);
 
-    if (isDarkMode == null) {
-      preferences.setBool(prefkey, false);
-      isDarkMode = false;
+    if (whichtheme == null) {
+      preferences.setString(prefkey, "claro");
     }
-
-    (isDarkMode) ? temaOscuro() : temaClaro();
+    switch (whichtheme) {
+      case "claro":
+        temaClaro();
+        break;
+      case "oscuro":
+        temaOscuro();
+        break;
+      case "personalizado":
+        temaPersonalizado();
+        break;
+    }
   }
 
   Future<void> cargarPreferencias() async {

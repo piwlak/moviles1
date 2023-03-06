@@ -33,7 +33,7 @@ List<OnboardContent> contents = [
   ),
   OnboardContent(
     image: "assets/5.png",
-    text: "Pantalla 4",
+    text: "Perfiles",
     descripcion:
         "Tambien puedes entrar a sus perfiles y ver que han hecho recientemente, como que se fueron de fiesta...(y no te invitaron).",
   ),

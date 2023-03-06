@@ -37,7 +37,7 @@ class PMSNApp extends StatelessWidget {
         onGenerateRoute: MyRoutes.generatroute,
         initialRoute: Route_login,
         //routes: getApplicationRoutes(),
-        home: LoginPage(),
+        home: const LoginPage(),
       ),
     );
   }

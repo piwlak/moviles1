@@ -49,13 +49,13 @@ class ThemeHelper {
     }
 
     return BoxDecoration(
-      boxShadow: [
+      boxShadow: const [
         BoxShadow(color: Colors.black26, offset: Offset(0, 4), blurRadius: 5.0)
       ],
       gradient: LinearGradient(
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
-        stops: [0.0, 1.0],
+        stops: const [0.0, 1.0],
         colors: [
           c1,
           c2,
@@ -73,7 +73,7 @@ class ThemeHelper {
           borderRadius: BorderRadius.circular(30.0),
         ),
       ),
-      minimumSize: MaterialStateProperty.all(Size(50, 50)),
+      minimumSize: MaterialStateProperty.all(const Size(50, 50)),
       backgroundColor: MaterialStateProperty.all(Colors.transparent),
       shadowColor: MaterialStateProperty.all(Colors.transparent),
     );
@@ -85,15 +85,15 @@ class ThemeHelper {
       content: Text(content),
       actions: [
         TextButton(
-          child: Text(
-            "OK",
-            style: TextStyle(color: Colors.white),
-          ),
           style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all(Colors.black38)),
           onPressed: () {
             Navigator.of(context).pop();
           },
+          child: const Text(
+            "OK",
+            style: TextStyle(color: Colors.white),
+          ),
         ),
       ],
     );
