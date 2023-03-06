@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:moviles1/screen/LoginPageMobile.dart';
@@ -58,7 +57,6 @@ class _OnboardingPageState extends State<OnboardingPage> {
                             padding: EdgeInsets.all(25),
                             child: Column(
                               children: [
-                                //Lottie.asset('assets/LottieLogo1.json'),
                                 Image.asset(contents[i].image),
                                 SizedBox(height: 20),
                                 Text(
