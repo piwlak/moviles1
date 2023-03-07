@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:moviles1/routes.dart';
 import 'package:moviles1/provider/theme_provider.dart';
+import 'package:moviles1/screen/list_post.dart';
 import 'package:provider/provider.dart';
 import 'splash_screen.dart';
 import '../widgets/header_widget.dart';
@@ -166,15 +167,15 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
       ),
       body: SingleChildScrollView(
-        child: Stack(
+        child: Column(
           children: [
             Container(
-              height: 100,
-              child: HeaderWidget(100, false, Icons.house_rounded),
-            ),
-            Container(
+              alignment: Alignment.center,
+              margin: EdgeInsets.fromLTRB(25, 10, 25, 10),
+              padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+              child: ListPost(),
 
-                /*
+              /*
               alignment: Alignment.center,
               margin: EdgeInsets.fromLTRB(25, 10, 25, 10),
               padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
@@ -281,7 +282,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   )
                 ],
               ),*/
-                )
+            )
           ],
         ),
       ),
