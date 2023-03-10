@@ -20,8 +20,7 @@ class _ListPostState extends State<ListPost> {
 
   @override
   Widget build(BuildContext context) {
-    return ItemPostWidget();
-    /*FutureBuilder(
+    return FutureBuilder(
       future: database!.GETALLPOST(),
       builder: (context, AsyncSnapshot<List<POSTMODEL>> snapshot) {
         if (snapshot.hasData) {
@@ -42,6 +41,6 @@ class _ListPostState extends State<ListPost> {
             child: CircularProgressIndicator(),
           );
       },
-    );*/
+    );
   }
 }

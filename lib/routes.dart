@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moviles1/pages/loginpage.dart';
+import 'package:moviles1/screen/add_post.dart';
 import 'package:moviles1/screen/forgot_password_page.dart';
 import 'package:moviles1/screen/forgot_password_verification_page.dart';
 import 'package:moviles1/screen/LoginPageMobile.dart';
@@ -24,10 +25,13 @@ const String Route_verificationPass = '/verificationPass';
 const String Route_SplasScreen = '/SplashScreen';
 const String Route_OnBoardScreen = '/onBoard';
 const String Route_Settings = '/Settings';
+const String Route_Add = '/Add';
 
 class MyRoutes {
   static Route<dynamic> generatroute(RouteSettings settings) {
     switch (settings.name) {
+      case '/Add':
+        return MaterialPageRoute(builder: (_) => AddPost());
       case '/login':
         return MaterialPageRoute(builder: (_) => LoginPage());
       case '/profile':
