@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:moviles1/database/database_helper.dart';
 import 'package:moviles1/models/PostModel.dart';
+import 'package:provider/provider.dart';
 import 'package:sqflite/sqflite.dart';
 
-class ItemPostWidget extends StatefulWidget {
-  @override
+import '../provider/flags_provider.dart';
+
+class ItemPostWidget extends StatelessWidget {
   ItemPostWidget({super.key, this.objpostmodel});
   POSTMODEL? objpostmodel;
   DatabaseHelper database = DatabaseHelper();
-  State<ItemPostWidget> createState() => _ItemPostWidgetState();
-}
 
-class _ItemPostWidgetState extends State<ItemPostWidget> {
   @override
   Widget build(BuildContext context) {
     final avatar =
@@ -25,6 +24,8 @@ class _ItemPostWidgetState extends State<ItemPostWidget> {
     final desctxt = Text(
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ');
     final iconRate = Icon(Icons.favorite_border);
+    FlagsProvider flag = Provider.of<FlagsProvider>(context);
+
     return Container(
       margin: const EdgeInsets.all(5),
       decoration: BoxDecoration(
@@ -35,7 +36,28 @@ class _ItemPostWidgetState extends State<ItemPostWidget> {
           // tileColor: Theme.of(context).colorScheme.onSecondary,
           title: txtuser,
           subtitle: datepost,
-          trailing: IconButton(onPressed: () {}, icon: Icon(Icons.more_vert)),
+          trailing: IconButton(
+              onPressed: () {
+                showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                          title: const Text('confirmar Borrado'),
+                          content: const Text('deseas borrar la publicacion?'),
+                          actions: [
+                            TextButton(
+                                onPressed: () {
+                                  database
+                                      .delete('tblPost', objpostmodel!.idPost!)
+                                      .then((value) => flag.setflagpost());
+                                  Navigator.pop(context);
+                                },
+                                child: Text('Ok')),
+                            TextButton(
+                                onPressed: () {}, child: Text('Cancelar')),
+                          ],
+                        ));
+              },
+              icon: Icon(Icons.more_vert)),
           leading: avatar,
         ),
         Center(

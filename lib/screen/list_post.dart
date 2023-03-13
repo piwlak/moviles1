@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:moviles1/database/database_helper.dart';
+import 'package:moviles1/provider/flags_provider.dart';
+import 'package:provider/provider.dart';
 import '../models/PostModel.dart';
 import '../widgets/post_widget.dart';
 
@@ -20,6 +23,8 @@ class _ListPostState extends State<ListPost> {
 
   @override
   Widget build(BuildContext context) {
+    FlagsProvider flag = Provider.of<FlagsProvider>(context);
+    flag.getflagpost();
     return FutureBuilder(
       future: database!.GETALLPOST(),
       builder: (context, AsyncSnapshot<List<POSTMODEL>> snapshot) {

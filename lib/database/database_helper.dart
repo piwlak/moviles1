@@ -45,7 +45,7 @@ class DatabaseHelper {
         where: 'idPost = ?', whereArgs: [data['idPost']]);
   }
 
-  Future<int> delete(String tblname) async {
+  Future<int> delete(String tblname, int i) async {
     var conn = await database;
     return conn.delete(tblname, where: 'idPost = ?', whereArgs: ['idPost']);
   }
