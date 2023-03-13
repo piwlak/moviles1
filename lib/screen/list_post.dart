@@ -28,18 +28,18 @@ class _ListPostState extends State<ListPost> {
             itemCount: snapshot.data!.length,
             itemBuilder: (context, index) {
               var objpostmodel = snapshot.data![index];
-              return ItemPostWidget(
-                  objpostmodel: objpostmodel); //return algo mas
+              return ItemPostWidget(objpostmodel: objpostmodel);
             },
           );
         } else if (snapshot.hasError) {
           return const Center(
-            child: Text('ocurrio un error'),
+            child: Text('Ha ocurrido un error'),
           );
-        } else
-          return Center(
+        } else {
+          return const Center(
             child: CircularProgressIndicator(),
           );
+        }
       },
     );
   }

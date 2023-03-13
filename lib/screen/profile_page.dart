@@ -174,12 +174,14 @@ class _ProfilePageState extends State<ProfilePage> {
         child: ListPost(),
       ),
       floatingActionButton: FloatingActionButton.extended(
-          onPressed: () {
-            Navigator.pushNamed(context, Route_Add).then((value) {
-              setState(() {});
-            });
-          },
-          label: Text('Add')),
+        onPressed: () {
+          Navigator.pushNamed(context, Route_Add).then((value) {
+            setState(() {});
+          });
+        },
+        icon: Icon(Icons.add),
+        label: Text('add'),
+      ),
     );
   }
 }
