@@ -12,15 +12,28 @@ class AddPost extends StatelessWidget {
         child: Container(
           margin: EdgeInsets.all(10),
           padding: EdgeInsets.all(15),
-          height: 350,
+          height: 200,
           decoration: BoxDecoration(
-              color: Colors.deepPurpleAccent.withOpacity(0.4),
-              border: Border.all(color: Colors.black)),
+              color: Theme.of(context).colorScheme.secondary.withOpacity(0.4),
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: [
+                BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 5,
+                    blurRadius: 7,
+                    offset: Offset(0, 3))
+              ]),
           child: Column(children: [
-            Text('add post'),
+            Text(
+              'Add post',
+              style: TextStyle(fontSize: 20),
+            ),
             TextFormField(
               controller: txtPostCon,
-              maxLines: 8,
+              maxLines: 4,
+            ),
+            Divider(
+              height: 20,
             ),
             ElevatedButton(
                 onPressed: () {

@@ -14,42 +14,40 @@ class ItemPostWidget extends StatefulWidget {
 class _ItemPostWidgetState extends State<ItemPostWidget> {
   @override
   Widget build(BuildContext context) {
-    final avatar = CircleAvatar(backgroundImage: AssetImage('assets/1.png'));
+    final avatar =
+        CircleAvatar(backgroundImage: AssetImage('assets/ruyellrt.jpg'));
     final txtuser = Text('lorena');
     final datepost = Text('10/10/21');
     final imgpost = Image(
       image: AssetImage('assets/2.png'),
-      height: 50,
+      height: 200,
     );
-    final desctxt = Text('lorem');
-    final iconRate = Icon(Icons.star);
+    final desctxt = Text(
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ');
+    final iconRate = Icon(Icons.favorite_border);
     return Container(
-      margin: const EdgeInsets.all(10),
-      height: 250,
+      margin: const EdgeInsets.all(5),
       decoration: BoxDecoration(
-          color: Colors.greenAccent, borderRadius: BorderRadius.circular(10)),
+          color: Theme.of(context).colorScheme.primary.withOpacity(0.4),
+          borderRadius: BorderRadius.circular(10)),
       child: Column(children: [
-        Row(
-          children: [avatar, txtuser, datepost],
+        ListTile(
+          // tileColor: Theme.of(context).colorScheme.onSecondary,
+          title: txtuser,
+          subtitle: datepost,
+          trailing: IconButton(onPressed: () {}, icon: Icon(Icons.more_vert)),
+          leading: avatar,
         ),
-        Row(
-          children: [
-            imgpost,
-            desctxt,
-          ],
+        Center(
+          child: imgpost,
         ),
-        Row(
-          children: [
-            IconButton(onPressed: () {}, icon: Icon(Icons.star)),
-            Expanded(child: Container()),
-            IconButton(onPressed: () {}, icon: Icon(Icons.edit)),
-            IconButton(
-                onPressed: () {
-                  /*database.delete('tblPost', objpostmodel!.idPost!);*/
-                },
-                icon: Icon(Icons.delete)),
-          ],
-        )
+        Container(
+          padding: EdgeInsets.symmetric(horizontal: 15),
+          child: desctxt,
+        ),
+        ListTile(
+          trailing: IconButton(onPressed: () {}, icon: iconRate),
+        ),
       ]),
     );
   }
