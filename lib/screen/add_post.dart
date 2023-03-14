@@ -12,7 +12,7 @@ class AddPost extends StatelessWidget {
         child: Container(
           margin: EdgeInsets.all(10),
           padding: EdgeInsets.all(15),
-          height: 200,
+          height: 221,
           decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.secondary.withOpacity(0.4),
               borderRadius: BorderRadius.circular(20),

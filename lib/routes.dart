@@ -48,7 +48,7 @@ class MyRoutes {
       case '/onBorard':
         return MaterialPageRoute(builder: (_) => const OnboardingPage());
       case '/Settings':
-        return MaterialPageRoute(builder: (_) => Settings());
+        return MaterialPageRoute(builder: (_) => ThemeSettings());
       default:
         return MaterialPageRoute(builder: (_) => LoginPage());
     }

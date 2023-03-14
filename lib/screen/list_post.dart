@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:moviles1/database/database_helper.dart';
 import 'package:moviles1/provider/flags_provider.dart';
 import 'package:provider/provider.dart';
