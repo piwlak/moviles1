@@ -4,6 +4,7 @@ import 'package:moviles1/pages/loginpage.dart';
 import 'package:moviles1/provider/flags_provider.dart';
 import 'package:moviles1/provider/theme_provider.dart';
 import 'package:moviles1/routes.dart';
+import 'package:moviles1/screen/settings_page.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
@@ -37,9 +38,9 @@ class PMSNApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: theme.getthemeData(),
         onGenerateRoute: MyRoutes.generatroute,
-        initialRoute: Route_login,
+        initialRoute: Route_Settings,
         //routes: getApplicationRoutes(),
-        home: const LoginPage(),
+        home: const Settings(),
       ),
     );
   }

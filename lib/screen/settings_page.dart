@@ -67,7 +67,8 @@ class _Settings extends State<Settings> {
                       setState(() {
                         _value = val!;
                       });
-                      themecontroller.temaClaro();
+                      //themecontroller.temaClaro();
+                      theme.setthemeData(ThemeData.light());
                       preferences.setInt("RB", 1);
                     },
                     title: Text('tema claro'),
@@ -79,7 +80,7 @@ class _Settings extends State<Settings> {
                       setState(() {
                         _value = val!;
                       });
-                      themecontroller.temaOscuro();
+                      theme.setthemeData(ThemeData.dark());
                       preferences.setInt("RB", 2);
                     },
                     title: Text('tema obscuro'),
