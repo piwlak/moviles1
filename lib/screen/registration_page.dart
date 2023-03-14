@@ -94,13 +94,15 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                 width: 200.0,
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  color: Colors.pink.shade200,
+                                  color: Theme.of(context).colorScheme.primary,
                                 ),
                                 child: Center(
                                   child: _image == null
                                       ? const Text(
                                           'Selecciona tu Imagen',
-                                          style: TextStyle(fontSize: 20),
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              color: Colors.white),
                                         )
                                       : CircleAvatar(
                                           backgroundImage: FileImage(_image!),
@@ -344,9 +346,10 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                     context: context,
                                     builder: (BuildContext context) {
                                       return ThemeHelper().alartDialog(
-                                          "Facebook",
-                                          "You tap on Facebook social icon.",
-                                          context);
+                                        "Facebook",
+                                        "You tap on Facebook social icon.",
+                                        context,
+                                      );
                                     },
                                   );
                                 });

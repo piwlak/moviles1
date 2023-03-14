@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:theme_provider/theme_provider.dart';
 
 class Appbar_Widget extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      title: Text('Socialitec'),
       elevation: 0.5,
       iconTheme: IconThemeData(color: Colors.white),
       flexibleSpace: Container(
@@ -12,11 +14,12 @@ class Appbar_Widget extends StatelessWidget implements PreferredSizeWidget {
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: <Color>[
-              ThemeData().primaryColorLight,
+              Theme.of(context).colorScheme.secondary,
               Theme.of(context).primaryColor,
             ])),
       ),
       actions: [
+        CycleThemeIconButton(),
         Container(
           margin: EdgeInsets.only(
             top: 16,

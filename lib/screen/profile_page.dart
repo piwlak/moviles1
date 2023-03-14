@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get_navigation/get_navigation.dart';
 import 'package:moviles1/routes.dart';
-import 'package:moviles1/provider/theme_provider.dart';
 import 'package:moviles1/screen/list_post.dart';
 import 'package:provider/provider.dart';
+import '../widgets/appbar_widget.dart';
 import 'splash_screen.dart';
 import '../widgets/header_widget.dart';
 
@@ -22,11 +21,8 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    ThemeProvider theme = Provider.of<ThemeProvider>(context);
     return Scaffold(
-      appBar: AppBar(
-        title: Text('SocialiTec'),
-      ),
+      appBar: Appbar_Widget(),
       drawer: Drawer(
         child: Container(
           decoration: BoxDecoration(
@@ -129,6 +125,46 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               ListTile(
                 leading: Icon(
+                  Icons.settings,
+                  size: _drawerIconSize,
+                  color: Theme.of(context).colorScheme.onSecondary,
+                ),
+                title: Text(
+                  'Settings',
+                  style: TextStyle(
+                      fontSize: _drawerFontSize,
+                      color: Theme.of(context).colorScheme.onSecondary),
+                ),
+                onTap: () {
+                  Navigator.pushNamed(context, Route_Settings);
+                },
+              ),
+              Divider(
+                color: Theme.of(context).colorScheme.secondary,
+                height: 1,
+              ),
+              ListTile(
+                leading: Icon(
+                  Icons.calendar_month,
+                  size: _drawerIconSize,
+                  color: Theme.of(context).colorScheme.onSecondary,
+                ),
+                title: Text(
+                  'Events',
+                  style: TextStyle(
+                      fontSize: _drawerFontSize,
+                      color: Theme.of(context).colorScheme.onSecondary),
+                ),
+                onTap: () {
+                  //
+                },
+              ),
+              Divider(
+                color: Theme.of(context).colorScheme.secondary,
+                height: 1,
+              ),
+              ListTile(
+                leading: Icon(
                   Icons.logout_rounded,
                   size: _drawerIconSize,
                   color: Theme.of(context).colorScheme.onSecondary,
@@ -147,22 +183,6 @@ class _ProfilePageState extends State<ProfilePage> {
                 color: Theme.of(context).colorScheme.secondary,
                 height: 1,
               ),
-              ListTile(
-                leading: Icon(
-                  Icons.settings,
-                  size: _drawerIconSize,
-                  color: Theme.of(context).colorScheme.onSecondary,
-                ),
-                title: Text(
-                  'Settings',
-                  style: TextStyle(
-                      fontSize: _drawerFontSize,
-                      color: Theme.of(context).colorScheme.onSecondary),
-                ),
-                onTap: () {
-                  Navigator.pushNamed(context, Route_Settings);
-                },
-              ),
             ],
           ),
         ),
@@ -179,8 +199,15 @@ class _ProfilePageState extends State<ProfilePage> {
             setState(() {});
           });
         },
-        icon: Icon(Icons.add),
-        label: Text('add'),
+        icon: Icon(
+          Icons.add,
+          color: Theme.of(context).colorScheme.background,
+        ),
+        label: Text(
+          'Add',
+          style: TextStyle(color: Theme.of(context).colorScheme.background),
+        ),
+        backgroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
       ),
     );
   }

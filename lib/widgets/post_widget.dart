@@ -15,14 +15,19 @@ class ItemPostWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final avatar =
         CircleAvatar(backgroundImage: AssetImage('assets/ruyellrt.jpg'));
-    final txtuser = Text('lorena');
-    final datepost = Text('10/10/21');
+    final txtuser = Text(
+      'lorena',
+      style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+    );
+    final datepost = Text('10/10/21',
+        style: TextStyle(color: Theme.of(context).colorScheme.onPrimary));
     final imgpost = Image(
       image: AssetImage('assets/2.png'),
       height: 200,
     );
     final desctxt = Text(
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ');
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ',
+        style: TextStyle(color: Theme.of(context).colorScheme.onPrimary));
     final iconRate = Icon(Icons.favorite_border);
     FlagsProvider flag = Provider.of<FlagsProvider>(context);
 
@@ -37,27 +42,28 @@ class ItemPostWidget extends StatelessWidget {
           title: txtuser,
           subtitle: datepost,
           trailing: IconButton(
-              onPressed: () {
-                showDialog(
-                    context: context,
-                    builder: (context) => AlertDialog(
-                          title: const Text('confirmar Borrado'),
-                          content: const Text('deseas borrar la publicacion?'),
-                          actions: [
-                            TextButton(
-                                onPressed: () {
-                                  database
-                                      .delete('tblPost', objpostmodel!.idPost!)
-                                      .then((value) => flag.setflagpost());
-                                  Navigator.pop(context);
-                                },
-                                child: Text('Ok')),
-                            TextButton(
-                                onPressed: () {}, child: Text('Cancelar')),
-                          ],
-                        ));
-              },
-              icon: Icon(Icons.more_vert)),
+            onPressed: () {
+              showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                        title: const Text('confirmar Borrado'),
+                        content: const Text('deseas borrar la publicacion?'),
+                        actions: [
+                          TextButton(
+                              onPressed: () {
+                                database
+                                    .delete('tblPost', objpostmodel!.idPost!)
+                                    .then((value) => flag.setflagpost());
+                                Navigator.pop(context);
+                              },
+                              child: Text('Ok')),
+                          TextButton(onPressed: () {}, child: Text('Cancelar')),
+                        ],
+                      ));
+            },
+            icon: Icon(Icons.more_vert),
+            color: Theme.of(context).colorScheme.onPrimary,
+          ),
           leading: avatar,
         ),
         Center(
@@ -68,7 +74,10 @@ class ItemPostWidget extends StatelessWidget {
           child: desctxt,
         ),
         ListTile(
-          trailing: IconButton(onPressed: () {}, icon: iconRate),
+          trailing: IconButton(
+              onPressed: () {},
+              icon: iconRate,
+              color: Theme.of(context).colorScheme.onPrimary),
         ),
       ]),
     );

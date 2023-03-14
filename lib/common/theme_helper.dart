@@ -81,8 +81,12 @@ class ThemeHelper {
 
   AlertDialog alartDialog(String title, String content, BuildContext context) {
     return AlertDialog(
-      title: Text(title),
-      content: Text(content),
+      title: Text(
+        title,
+        style: TextStyle(color: Theme.of(context).colorScheme.onBackground),
+      ),
+      content: Text(content,
+          style: TextStyle(color: Theme.of(context).colorScheme.onBackground)),
       actions: [
         TextButton(
           style: ButtonStyle(
