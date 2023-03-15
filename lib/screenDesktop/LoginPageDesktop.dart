@@ -1,9 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import '../common/theme_helper.dart';
-import 'forgot_password_page.dart';
-import 'profile_page.dart';
-import 'registration_page.dart';
+import '../screen/forgot_password_page.dart';
+import '../screen/profile_page.dart';
+import '../screen/registration_page.dart';
 import '../widgets/header_widget.dart';
 
 class LoginPageDestop extends StatefulWidget {

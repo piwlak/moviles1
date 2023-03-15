@@ -34,11 +34,11 @@ class ItemPostWidget extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.all(5),
       decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.primary.withOpacity(0.4),
+          color: Theme.of(context).colorScheme.secondary.withOpacity(0.4),
           borderRadius: BorderRadius.circular(10)),
       child: Column(children: [
         ListTile(
-          // tileColor: Theme.of(context).colorScheme.onSecondary,
+          tileColor: Theme.of(context).colorScheme.onSecondary,
           title: txtuser,
           subtitle: datepost,
           trailing: IconButton(

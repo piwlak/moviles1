@@ -5,8 +5,8 @@ import 'package:path/path.dart';
 import '../models/PostModel.dart';
 
 class DatabaseHelper {
-  static final nameDB = 'SOCIALITECDB';
-  static final versionDB = 1;
+  static const nameDB = 'SOCIALITECDB';
+  static const versionDB = 1;
 
   static Database? _database;
 
@@ -50,6 +50,7 @@ class DatabaseHelper {
     return conn.delete(tblname, where: 'idPost = ?', whereArgs: ['idPost']);
   }
 
+  // ignore: non_constant_identifier_names
   Future<List<POSTMODEL>> GETALLPOST() async {
     var conn = await database;
     var result = await conn.query('tblPost');

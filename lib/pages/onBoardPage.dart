@@ -1,7 +1,7 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
-import 'package:moviles1/screen/LoginPageDesktop.dart';
-import 'package:moviles1/screen/LoginPageMobile.dart';
-import 'package:moviles1/screen/onBoardDesktop.dart';
+import 'package:moviles1/screenDesktop/onBoardDesktop.dart';
 import 'package:moviles1/screen/onBoardMobile.dart';
 import '../widgets/responsive.dart';
 
@@ -17,8 +17,8 @@ class _OnBoardPageState extends State<OnBoardPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Responsive_layout(
-        mobileBody: OnboardingPage(),
-        destopbody: OnBoardDesktop(),
+        mobileBody: const OnboardingPage(),
+        destopbody: const OnBoardDesktop(),
       ),
     );
   }
