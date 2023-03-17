@@ -39,18 +39,17 @@ class DatabaseHelper {
     return conn.insert(tblname, data);
   }
 
-  Future<int> upadate(String tblname, Map<String, dynamic> data) async {
+  Future<int> update(String tblname, Map<String, dynamic> data) async {
     var conn = await database;
-    return conn.update(tblname, data,
-        where: 'idPost = ?', whereArgs: [data['idPost']]);
+    return conn
+        .update(tblname, data, where: 'idPost=?', whereArgs: [data['idPost']]);
   }
 
   Future<int> delete(String tblname, int i) async {
     var conn = await database;
-    return conn.delete(tblname, where: 'idPost = ?', whereArgs: ['idPost']);
+    return conn.delete(tblname, where: 'idPost=?', whereArgs: ['idPost']);
   }
 
-  // ignore: non_constant_identifier_names
   Future<List<POSTMODEL>> GETALLPOST() async {
     var conn = await database;
     var result = await conn.query('tblPost');

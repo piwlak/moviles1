@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:moviles1/database/database_helper.dart';
+import 'package:moviles1/models/PostModel.dart';
+import 'package:provider/provider.dart';
+
+import '../provider/flags_provider.dart';
 
 class AddPost extends StatelessWidget {
   AddPost({super.key});
   DatabaseHelper database = DatabaseHelper();
+  POSTMODEL? objpost;
   @override
   Widget build(BuildContext context) {
     final txtPostCon = TextEditingController();
+    FlagsProvider flag = Provider.of<FlagsProvider>(context);
+    if (ModalRoute.of(context)!.settings.arguments != null) {
+      objpost = ModalRoute.of(context)!.settings.arguments as POSTMODEL;
+      txtPostCon.text = objpost!.descPost!;
+    }
     return Scaffold(
       body: Center(
         child: Container(
@@ -24,10 +34,15 @@ class AddPost extends StatelessWidget {
                     offset: Offset(0, 3))
               ]),
           child: Column(children: [
-            Text(
-              'Add post',
-              style: TextStyle(fontSize: 20),
-            ),
+            objpost == null
+                ? Text(
+                    'Add post',
+                    style: TextStyle(fontSize: 20),
+                  )
+                : Text(
+                    'Edit post',
+                    style: TextStyle(fontSize: 20),
+                  ),
             TextFormField(
               controller: txtPostCon,
               maxLines: 4,
@@ -37,16 +52,32 @@ class AddPost extends StatelessWidget {
             ),
             ElevatedButton(
                 onPressed: () {
-                  database.insert('tblPost', {
-                    'descPost': txtPostCon.text,
-                    'datePost': DateTime.now().toString()
-                  }).then((value) {
-                    var msg =
-                        value > 0 ? 'Registro insertado' : 'Ocurrio un error';
-                    var snackBar = SnackBar(content: Text(msg));
-                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                    Navigator.pop(context);
-                  });
+                  if (objpost == null) {
+                    database.insert('tblPost', {
+                      'descPost': txtPostCon.text,
+                      'datePost': DateTime.now().toString()
+                    }).then((value) {
+                      var msg =
+                          value > 0 ? 'Registro insertado' : 'Ocurrio un error';
+                      var snackBar = SnackBar(content: Text(msg));
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      Navigator.pop(context);
+                    });
+                  } else {
+                    database.update('tblPost', {
+                      'idPost': objpost?.idPost,
+                      'descPost': txtPostCon.text,
+                      'datePost': DateTime.now().toString()
+                    }).then((value) {
+                      var msg = value > 0
+                          ? 'Registro Actualizado'
+                          : 'Ocurrio un error';
+                      var snackBar = SnackBar(content: Text(msg));
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      Navigator.pop(context);
+                    });
+                  }
+                  flag.setflagpost();
                 },
                 child: Text('Save Post'))
           ]),

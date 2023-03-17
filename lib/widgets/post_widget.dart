@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moviles1/database/database_helper.dart';
 import 'package:moviles1/models/PostModel.dart';
+import 'package:moviles1/routes.dart';
 import 'package:provider/provider.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -25,12 +26,10 @@ class ItemPostWidget extends StatelessWidget {
       image: AssetImage('assets/2.png'),
       height: 200,
     );
-    final desctxt = Text(
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ',
+    final desctxt = Text(objpostmodel!.descPost!,
         style: TextStyle(color: Theme.of(context).colorScheme.onPrimary));
     final iconRate = Icon(Icons.favorite_border);
     FlagsProvider flag = Provider.of<FlagsProvider>(context);
-
     return Container(
       margin: const EdgeInsets.all(5),
       decoration: BoxDecoration(
@@ -57,7 +56,11 @@ class ItemPostWidget extends StatelessWidget {
                                 Navigator.pop(context);
                               },
                               child: Text('Ok')),
-                          TextButton(onPressed: () {}, child: Text('Cancelar')),
+                          TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: Text('Cancelar')),
                         ],
                       ));
             },
@@ -75,7 +78,10 @@ class ItemPostWidget extends StatelessWidget {
         ),
         ListTile(
           trailing: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, Route_Add,
+                    arguments: objpostmodel);
+              },
               icon: iconRate,
               color: Theme.of(context).colorScheme.onPrimary),
         ),

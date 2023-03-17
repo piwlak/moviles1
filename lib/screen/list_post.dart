@@ -23,9 +23,10 @@ class _ListPostState extends State<ListPost> {
   @override
   Widget build(BuildContext context) {
     FlagsProvider flag = Provider.of<FlagsProvider>(context);
-    flag.getflagpost();
     return FutureBuilder(
-      future: database!.GETALLPOST(),
+      future: flag.getflagpost() == true
+          ? database!.GETALLPOST()
+          : database!.GETALLPOST(),
       builder: (context, AsyncSnapshot<List<POSTMODEL>> snapshot) {
         if (snapshot.hasData) {
           return ListView.builder(
