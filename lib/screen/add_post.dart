@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:moviles1/database/database_helper.dart';
 import 'package:moviles1/models/PostModel.dart';
 import 'package:provider/provider.dart';
-
 import '../provider/flags_provider.dart';
 
 class AddPost extends StatelessWidget {
@@ -53,7 +52,7 @@ class AddPost extends StatelessWidget {
             ElevatedButton(
                 onPressed: () {
                   if (objpost == null) {
-                    database.insert('tblPost', {
+                    database.INSERT('tblPost', {
                       'descPost': txtPostCon.text,
                       'datePost': DateTime.now().toString()
                     }).then((value) {
@@ -64,7 +63,7 @@ class AddPost extends StatelessWidget {
                       Navigator.pop(context);
                     });
                   } else {
-                    database.update('tblPost', {
+                    database.UPDATE('tblPost', {
                       'idPost': objpost?.idPost,
                       'descPost': txtPostCon.text,
                       'datePost': DateTime.now().toString()

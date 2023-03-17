@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:moviles1/database/database_helper.dart';
 import 'package:moviles1/models/PostModel.dart';
 import 'package:moviles1/routes.dart';
+import 'package:moviles1/screen/add_post.dart';
 import 'package:provider/provider.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -51,7 +52,7 @@ class ItemPostWidget extends StatelessWidget {
                           TextButton(
                               onPressed: () {
                                 database
-                                    .delete('tblPost', objpostmodel!.idPost!)
+                                    .DELETE('tblPost', objpostmodel!.idPost!)
                                     .then((value) => flag.setflagpost());
                                 Navigator.pop(context);
                               },
@@ -79,8 +80,8 @@ class ItemPostWidget extends StatelessWidget {
         ListTile(
           trailing: IconButton(
               onPressed: () {
-                Navigator.pushNamed(context, Route_Add,
-                    arguments: objpostmodel);
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => AddPost()));
               },
               icon: iconRate,
               color: Theme.of(context).colorScheme.onPrimary),
