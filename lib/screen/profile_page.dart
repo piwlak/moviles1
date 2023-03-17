@@ -156,7 +156,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       color: Theme.of(context).colorScheme.onSecondary),
                 ),
                 onTap: () {
-                  //
+                  Navigator.pushNamed(context, Route_Calendar);
                 },
               ),
               Divider(

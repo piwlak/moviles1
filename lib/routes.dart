@@ -10,6 +10,7 @@ import 'package:moviles1/screen/registration_page.dart';
 import 'package:moviles1/screen/splash_screen.dart';
 import 'package:moviles1/screen/onBoardMobile.dart';
 import 'package:moviles1/screen/settings_page.dart';
+import 'package:moviles1/screen/screenMobileEvents.dart';
 
 const String Route_login = '/login';
 const String Route_profile = '/profile';
@@ -20,6 +21,7 @@ const String Route_SplasScreen = '/SplashScreen';
 const String Route_OnBoardScreen = '/onBoard';
 const String Route_Settings = '/Settings';
 const String Route_Add = '/Add';
+const String Route_Calendar = '/Calendar';
 
 class MyRoutes {
   static Route<dynamic> generatroute(RouteSettings settings) {
@@ -43,6 +45,8 @@ class MyRoutes {
         return MaterialPageRoute(builder: (_) => const OnboardingPage());
       case '/Settings':
         return MaterialPageRoute(builder: (_) => ThemeSettings());
+      // case '/Calendar':
+      //   return MaterialPageRoute(builder: (_) => MyHomePage(title: 'evento',));
       default:
         return MaterialPageRoute(builder: (_) => const LoginPage());
     }
