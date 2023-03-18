@@ -34,6 +34,7 @@ class DatabaseHelper {
 
     await db.execute('''CREATE TABLE tblevents (
         idEvent INTEGER PRIMARY KEY,
+        titleE varchar(20),
         descEvent TEXT,
         dateEvent DATE,
         chkEvent int
