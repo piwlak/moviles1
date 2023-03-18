@@ -17,7 +17,6 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   double _drawerIconSize = 24;
   double _drawerFontSize = 17;
-  bool isDarkModeEnabled = false;
 
   @override
   Widget build(BuildContext context) {
@@ -49,12 +48,12 @@ class _ProfilePageState extends State<ProfilePage> {
               ListTile(
                 leading: Icon(Icons.screen_lock_landscape_rounded,
                     size: _drawerIconSize,
-                    color: Theme.of(context).colorScheme.onSecondary),
+                    color: Theme.of(context).colorScheme.onPrimaryContainer),
                 title: Text(
                   'Splash Screen',
                   style: TextStyle(
                       fontSize: 17,
-                      color: Theme.of(context).colorScheme.onSecondary),
+                      color: Theme.of(context).colorScheme.onPrimaryContainer),
                 ),
                 onTap: () {
                   Navigator.push(context,
@@ -62,125 +61,125 @@ class _ProfilePageState extends State<ProfilePage> {
                 },
               ),
               Divider(
-                color: Theme.of(context).colorScheme.secondary,
+                color: Theme.of(context).colorScheme.onPrimaryContainer,
                 height: 1,
               ),
               ListTile(
                 leading: Icon(Icons.person_add_alt_1,
                     size: _drawerIconSize,
-                    color: Theme.of(context).colorScheme.onSecondary),
+                    color: Theme.of(context).colorScheme.onPrimaryContainer),
                 title: Text(
                   'Registration Page',
                   style: TextStyle(
                       fontSize: _drawerFontSize,
-                      color: Theme.of(context).colorScheme.onSecondary),
+                      color: Theme.of(context).colorScheme.onPrimaryContainer),
                 ),
                 onTap: () {
                   Navigator.pushNamed(context, Route_registration);
                 },
               ),
               Divider(
-                color: Theme.of(context).colorScheme.secondary,
+                color: Theme.of(context).colorScheme.onPrimaryContainer,
                 height: 1,
               ),
               ListTile(
                 leading: Icon(
                   Icons.password_rounded,
                   size: _drawerIconSize,
-                  color: Theme.of(context).colorScheme.onSecondary,
+                  color: Theme.of(context).colorScheme.onPrimaryContainer,
                 ),
                 title: Text(
                   'Forgot Password Page',
                   style: TextStyle(
                       fontSize: _drawerFontSize,
-                      color: Theme.of(context).colorScheme.onSecondary),
+                      color: Theme.of(context).colorScheme.onPrimaryContainer),
                 ),
                 onTap: () {
                   Navigator.pushNamed(context, Route_forgotPass);
                 },
               ),
               Divider(
-                color: Theme.of(context).colorScheme.secondary,
+                color: Theme.of(context).colorScheme.onPrimaryContainer,
                 height: 1,
               ),
               ListTile(
                 leading: Icon(
                   Icons.verified_user_sharp,
                   size: _drawerIconSize,
-                  color: Theme.of(context).colorScheme.onSecondary,
+                  color: Theme.of(context).colorScheme.onPrimaryContainer,
                 ),
                 title: Text(
                   'Verification Page',
                   style: TextStyle(
                       fontSize: _drawerFontSize,
-                      color: Theme.of(context).colorScheme.onSecondary),
+                      color: Theme.of(context).colorScheme.onPrimaryContainer),
                 ),
                 onTap: () {
                   Navigator.pushNamed(context, Route_verificationPass);
                 },
               ),
               Divider(
-                color: Theme.of(context).colorScheme.secondary,
+                color: Theme.of(context).colorScheme.onPrimaryContainer,
                 height: 1,
               ),
               ListTile(
                 leading: Icon(
                   Icons.settings,
                   size: _drawerIconSize,
-                  color: Theme.of(context).colorScheme.onSecondary,
+                  color: Theme.of(context).colorScheme.onPrimaryContainer,
                 ),
                 title: Text(
                   'Settings',
                   style: TextStyle(
                       fontSize: _drawerFontSize,
-                      color: Theme.of(context).colorScheme.onSecondary),
+                      color: Theme.of(context).colorScheme.onPrimaryContainer),
                 ),
                 onTap: () {
                   Navigator.pushNamed(context, Route_Settings);
                 },
               ),
               Divider(
-                color: Theme.of(context).colorScheme.secondary,
+                color: Theme.of(context).colorScheme.onPrimaryContainer,
                 height: 1,
               ),
               ListTile(
                 leading: Icon(
                   Icons.calendar_month,
                   size: _drawerIconSize,
-                  color: Theme.of(context).colorScheme.onSecondary,
+                  color: Theme.of(context).colorScheme.onPrimaryContainer,
                 ),
                 title: Text(
                   'Events',
                   style: TextStyle(
                       fontSize: _drawerFontSize,
-                      color: Theme.of(context).colorScheme.onSecondary),
+                      color: Theme.of(context).colorScheme.onPrimaryContainer),
                 ),
                 onTap: () {
                   Navigator.pushNamed(context, Route_Calendar);
                 },
               ),
               Divider(
-                color: Theme.of(context).colorScheme.secondary,
+                color: Theme.of(context).colorScheme.onPrimaryContainer,
                 height: 1,
               ),
               ListTile(
                 leading: Icon(
                   Icons.logout_rounded,
                   size: _drawerIconSize,
-                  color: Theme.of(context).colorScheme.onSecondary,
+                  color: Theme.of(context).colorScheme.onPrimaryContainer,
                 ),
                 title: Text(
                   'Logout',
                   style: TextStyle(
                       fontSize: _drawerFontSize,
-                      color: Theme.of(context).colorScheme.onSecondary),
+                      color: Theme.of(context).colorScheme.onPrimaryContainer),
                 ),
                 onTap: () {
                   SystemNavigator.pop();
                 },
               ),
               Divider(
-                color: Theme.of(context).colorScheme.secondary,
+                color: Theme.of(context).colorScheme.onPrimaryContainer,
                 height: 1,
               ),
             ],

@@ -48,8 +48,8 @@ class MyRoutes {
         return MaterialPageRoute(builder: (_) => const OnboardingPage());
       case '/Settings':
         return MaterialPageRoute(builder: (_) => ThemeSettings());
-      // case '/Calendar':
-      //   return MaterialPageRoute(builder: (_) => MyHomePage(title: 'evento',));
+      case '/Calendar':
+        return MaterialPageRoute(builder: (_) => Calendar());
       default:
         return MaterialPageRoute(builder: (_) => const LoginPage());
     }

@@ -1,103 +1,102 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:sqflite/sqflite.dart';
-import 'package:path/path.dart';
+import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:moviles1/models/Eventos.dart';
+import 'package:moviles1/widgets/appbar_widget.dart';
+import 'package:moviles1/widgets/event_widget.dart';
+import 'package:provider/provider.dart';
+import '../database/database_helper.dart';
+import '../provider/flags_provider.dart';
+import '../routes.dart';
+import 'listevents.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
+class Calendar extends StatefulWidget {
+  const Calendar({super.key});
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  State<Calendar> createState() => _CalendarState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  late Future<Database> _database;
-  bool _showCalendarView = true;
-
-  final TextEditingController _eventController = TextEditingController();
-  DateTime _selectedDate = DateTime.now();
-  final DateFormat _dateFormat = DateFormat('yyyy-MM-dd');
-  List<Map<String, dynamic>> _events = [];
-
-  @override
-  void initState() {
-    super.initState();
-    _initDatabase();
-    _refreshEvents();
-  }
-
-  Future<void> _initDatabase() async {
-    _database = openDatabase(
-      join(await getDatabasesPath(), 'events_database.db'),
-      onCreate: (db, version) {
-        return db.execute(
-          'CREATE TABLE events(id INTEGER PRIMARY KEY, dscEvento TEXT, fechaEvento TEXT, completado INTEGER)',
-        );
-      },
-      version: 1,
-    );
-  }
-
-  Future<void> _insertEvent(String description, DateTime date) async {
-    final Database db = await _database;
-    final String formattedDate = _dateFormat.format(date);
-    await db.insert(
-      'events',
-      {'dscEvento': description, 'fechaEvento': formattedDate, 'completado': 0},
-      conflictAlgorithm: ConflictAlgorithm.replace,
-    );
-    _refreshEvents();
-  }
-
-  Future<void> _refreshEvents() async {
-    final Database db = await _database;
-    final List<Map<String, dynamic>> events = await db.query('events');
-    setState(() {
-      _events = events;
-    });
-  }
-
-  Widget _buildEventList() {
-    return ListView.builder(
-      itemCount: _events.length,
-      itemBuilder: (context, index) {
-        final Map<String, dynamic> event = _events[index];
-        final String description = event['dscEvento'];
-        final String date = event['fechaEvento'];
-        final bool completed = event['completado'] == 1;
-        return ListTile(
-          title: Text(description),
-          subtitle: Text(date),
-          leading: Icon(
-            completed ? Icons.done : Icons.event,
-            color: completed ? Colors.green : Colors.grey,
-          ),
-          trailing: IconButton(
-            icon: Icon(Icons.delete),
-            onPressed: () async {
-              final Database db = await _database;
-              await db
-                  .delete('events', where: 'id = ?', whereArgs: [event['id']]);
-              _refreshEvents();
-            },
-          ),
-          onTap: () {
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(
-            //       builder: (context) => EventDetailPage(event: event)),
-            // );
-          },
-        );
-      },
-    );
-  }
+class _CalendarState extends State<Calendar> {
+  DatabaseHelper database = DatabaseHelper();
+  Event? event;
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
+    FlagsProvider flags = Provider.of<FlagsProvider>(context);
+    final txtDescEvent = TextEditingController();
+    return Scaffold(
+        appBar: Appbar_Widget(),
+        body:
+            flags.getflagpost() == true ? const ListEvent() : const ListEvent(),
+        floatingActionButton: FloatingActionButton.extended(
+          onPressed: () {
+            showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                      title: event == null
+                          ? Text('Adding Event')
+                          : Text('Editing Event'),
+                      content: SizedBox(
+                        height: 150,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            TextFormField(
+                              controller: txtDescEvent,
+                            ),
+                            IconButton(
+                                onPressed: () {
+                                  if (event == null) {
+                                    database.INSERT('tblevents', {
+                                      'descEvent': txtDescEvent.text,
+                                      'dateEvent': DateTime.now().toString(),
+                                      'chkEvent': 0
+                                    }).then((value) {
+                                      var msg =
+                                          value > 0 ? 'Insertado' : 'Error';
+                                      final snackBar =
+                                          SnackBar(content: Text(msg));
+                                      Navigator.pop(context);
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(snackBar);
+                                      flags.setflagpost();
+                                    });
+                                  } else {
+                                    database.UPDATE('tblevents', {
+                                      'idPost': event!.idEvent,
+                                      'descEvent': txtDescEvent.text,
+                                      'dateEvent': DateTime.now().toString(),
+                                    }).then((value) {
+                                      var msg =
+                                          value > 0 ? 'Actualizado' : 'Error';
+                                      final snackBar =
+                                          SnackBar(content: Text(msg));
+                                      Navigator.pop(context);
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(snackBar);
+                                      flags.setflagpost();
+                                    });
+                                  }
+                                },
+                                icon: const Icon(Icons.add))
+                          ],
+                        ),
+                      ),
+                      shape: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                    ));
+            flags.setflagpost();
+          },
+          icon: Icon(
+            Icons.add,
+            color: Theme.of(context).colorScheme.background,
+          ),
+          label: Text(
+            'Add',
+            style: TextStyle(color: Theme.of(context).colorScheme.background),
+          ),
+          backgroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
+        ));
   }
 }

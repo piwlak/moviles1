@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'package:moviles1/models/Eventos.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:moviles1/models/PostModel.dart';
 import 'package:sqflite/sqflite.dart';
@@ -8,8 +8,8 @@ import 'package:path/path.dart';
 class DatabaseHelper {
   static final nameDB = 'SOCIALDB';
   static final versionDB = 1;
-
   static Database? _database;
+
   Future<Database> get database async {
     if (_database != null) return _database!;
     return _database = await _initDatabase();
@@ -26,12 +26,18 @@ class DatabaseHelper {
   }
 
   _createTables(Database db, int version) async {
-    String query = '''CREATE TABLE tblPost (
+    await db.execute('''CREATE TABLE tblPost (
       idPost INTEGER PRIMARY KEY,
       descPost VARCHAR(200),
-      datePost DATE
-    )''';
-    db.execute(query);
+      datePost DATE)
+      ''');
+
+    await db.execute('''CREATE TABLE tblevents (
+        idEvent INTEGER PRIMARY KEY,
+        descEvent TEXT,
+        dateEvent DATE,
+        chkEvent int
+      )''');
   }
 
   Future<int> INSERT(String tblName, Map<String, dynamic> data) async {
@@ -54,5 +60,11 @@ class DatabaseHelper {
     var conexion = await database;
     var result = await conexion.query('tblPost');
     return result.map((post) => POSTMODEL.fromMap(post)).toList();
+  }
+
+  Future<List<Event>> GETALLEVENTS() async {
+    var conexion = await database;
+    var result = await conexion.query('tblevents');
+    return result.map((event) => Event.fromMap(event)).toList();
   }
 }

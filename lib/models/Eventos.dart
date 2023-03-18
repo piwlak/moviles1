@@ -1,33 +1,21 @@
-class Evento {
-  int id;
-  String descripcion;
-  DateTime fecha;
-  bool completado;
+class Event {
+  final int? idEvent;
+  final String? description;
+  final DateTime? date;
+  final int? completado;
 
-  Evento(
-      {required this.id,
-      required this.descripcion,
-      required this.fecha,
-      required this.completado});
+  Event({
+    this.idEvent,
+    this.description,
+    this.date,
+    this.completado,
+  });
 
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'descripcion': descripcion,
-      'fecha': fecha.toIso8601String(),
-      'completado': completado ? 1 : 0
-    };
-  }
-
-  static Evento fromMap(Map<String, dynamic> map) {
-    return Evento(
-        id: map['id'],
-        descripcion: map['descripcion'],
-        fecha: DateTime.parse(map['fecha']),
-        completado: map['completado'] == 1 ? true : false);
-  }
-
-  Future<int> copy({required int id}) async {
-    return id;
+  factory Event.fromMap(Map<String, dynamic> map) {
+    return Event(
+        idEvent: map['idEvent'],
+        description: map['descEvent'],
+        date: map['dateEvent'],
+        completado: map['chkEvent']);
   }
 }

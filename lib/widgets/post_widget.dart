@@ -5,7 +5,6 @@ import 'package:moviles1/routes.dart';
 import 'package:moviles1/screen/add_post.dart';
 import 'package:provider/provider.dart';
 import 'package:sqflite/sqflite.dart';
-
 import '../provider/flags_provider.dart';
 
 class ItemPostWidget extends StatelessWidget {
