@@ -80,8 +80,11 @@ class ItemPostWidget extends StatelessWidget {
         ListTile(
           trailing: IconButton(
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => AddPost()));
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => AddPost(objpost: objpostmodel)),
+                );
               },
               icon: iconRate,
               color: Theme.of(context).colorScheme.onPrimary),

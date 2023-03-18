@@ -27,7 +27,10 @@ class MyRoutes {
   static Route<dynamic> generatroute(RouteSettings settings) {
     switch (settings.name) {
       case '/Add':
-        return MaterialPageRoute(builder: (_) => AddPost());
+        return MaterialPageRoute(
+            builder: (_) => AddPost(
+                  objpost: null,
+                ));
       case '/login':
         return MaterialPageRoute(builder: (_) => const LoginPage());
       case '/profile':

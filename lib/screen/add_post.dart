@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import '../provider/flags_provider.dart';
 
 class AddPost extends StatelessWidget {
-  AddPost({super.key});
+  AddPost({super.key, required this.objpost});
   DatabaseHelper database = DatabaseHelper();
   POSTMODEL? objpost;
   @override
