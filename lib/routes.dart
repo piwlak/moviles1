@@ -6,6 +6,7 @@ import 'package:moviles1/screen/PopularVideos.dart';
 import 'package:moviles1/screen/add_post.dart';
 import 'package:moviles1/screen/forgot_password_page.dart';
 import 'package:moviles1/screen/forgot_password_verification_page.dart';
+import 'package:moviles1/screen/modifyEvents.dart';
 import 'package:moviles1/screen/profile_page.dart';
 import 'package:moviles1/screen/registration_page.dart';
 import 'package:moviles1/screen/splash_screen.dart';
@@ -24,6 +25,7 @@ const String Route_Settings = '/Settings';
 const String Route_Add = '/Add';
 const String Route_Calendar = '/Calendar';
 const String Route_Api = '/Api';
+const String Route_Modify = '/modify';
 
 class MyRoutes {
   static Route<dynamic> generatroute(RouteSettings settings) {
@@ -51,7 +53,9 @@ class MyRoutes {
       case '/Settings':
         return MaterialPageRoute(builder: (_) => ThemeSettings());
       case '/Calendar':
-        return MaterialPageRoute(builder: (_) => Calendar());
+        return MaterialPageRoute(builder: (_) => EventosScreen());
+      case '/modify':
+        return MaterialPageRoute(builder: (_) => ModifyEvent());
       case '/Api':
         return MaterialPageRoute(builder: (_) => ListPopularVideos());
       default:

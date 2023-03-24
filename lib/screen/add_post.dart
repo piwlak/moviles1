@@ -63,11 +63,16 @@ class AddPost extends StatelessWidget {
                       Navigator.pop(context);
                     });
                   } else {
-                    database.UPDATE('tblPost', {
-                      'idPost': objpost?.idPost,
-                      'descPost': txtPostCon.text,
-                      'datePost': DateTime.now().toString()
-                    }).then((value) {
+                    database
+                        .UPDATE(
+                            'tblPost',
+                            {
+                              'idPost': objpost?.idPost,
+                              'descPost': txtPostCon.text,
+                              'datePost': DateTime.now().toString()
+                            },
+                            'idPost')
+                        .then((value) {
                       var msg = value > 0
                           ? 'Registro Actualizado'
                           : 'Ocurrio un error';
