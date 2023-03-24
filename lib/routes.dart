@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:moviles1/pages/loginpage.dart';
+import 'package:moviles1/screen/PopularVideos.dart';
 import 'package:moviles1/screen/add_post.dart';
 import 'package:moviles1/screen/forgot_password_page.dart';
 import 'package:moviles1/screen/forgot_password_verification_page.dart';
@@ -22,6 +23,7 @@ const String Route_OnBoardScreen = '/onBoard';
 const String Route_Settings = '/Settings';
 const String Route_Add = '/Add';
 const String Route_Calendar = '/Calendar';
+const String Route_Api = '/Api';
 
 class MyRoutes {
   static Route<dynamic> generatroute(RouteSettings settings) {
@@ -50,6 +52,8 @@ class MyRoutes {
         return MaterialPageRoute(builder: (_) => ThemeSettings());
       case '/Calendar':
         return MaterialPageRoute(builder: (_) => Calendar());
+      case '/Api':
+        return MaterialPageRoute(builder: (_) => ListPopularVideos());
       default:
         return MaterialPageRoute(builder: (_) => const LoginPage());
     }

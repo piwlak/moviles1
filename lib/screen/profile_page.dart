@@ -123,6 +123,17 @@ class _ProfilePageState extends State<ProfilePage> {
                 height: 1,
               ),
               ListTile(
+                  leading: Icon(Icons.movie),
+                  title: Text('API'),
+                  trailing: Icon(Icons.chevron_right),
+                  onTap: () {
+                    Navigator.pushNamed(context, Route_Api);
+                  }),
+              Divider(
+                color: Theme.of(context).colorScheme.onPrimaryContainer,
+                height: 1,
+              ),
+              ListTile(
                 leading: Icon(
                   Icons.settings,
                   size: _drawerIconSize,
