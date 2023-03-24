@@ -27,7 +27,10 @@ class ItemPostWidget extends StatelessWidget {
       height: 200,
     );
     final desctxt = Text(objpostmodel!.descPost!,
-        style: TextStyle(color: Theme.of(context).colorScheme.onPrimary));
+        style: TextStyle(
+            color: Theme.of(context).colorScheme.onPrimary,
+            fontSize: 20,
+            fontWeight: FontWeight.bold));
     final iconRate = Icon(Icons.favorite_border);
     FlagsProvider flag = Provider.of<FlagsProvider>(context);
     return Container(
@@ -40,33 +43,49 @@ class ItemPostWidget extends StatelessWidget {
           tileColor: Theme.of(context).colorScheme.onSecondary,
           title: txtuser,
           subtitle: datepost,
-          trailing: IconButton(
-            onPressed: () {
-              showDialog(
-                  context: context,
-                  builder: (context) => AlertDialog(
-                        title: const Text('confirmar Borrado'),
-                        content: const Text('deseas borrar la publicacion?'),
-                        actions: [
-                          TextButton(
-                              onPressed: () {
-                                database
-                                    .DELETE('tblPost', objpostmodel!.idPost!,
-                                        'idPost')
-                                    .then((value) => flag.setflagpost());
-                                Navigator.pop(context);
-                              },
-                              child: Text('Ok')),
-                          TextButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              child: Text('Cancelar')),
-                        ],
-                      ));
-            },
-            icon: Icon(Icons.more_vert),
-            color: Theme.of(context).colorScheme.onPrimary,
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              IconButton(
+                onPressed: () {
+                  showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                            title: const Text('confirmar Borrado'),
+                            content:
+                                const Text('deseas borrar la publicacion?'),
+                            actions: [
+                              TextButton(
+                                  onPressed: () {
+                                    database
+                                        .DELETE('tblPost',
+                                            objpostmodel!.idPost!, 'idPost')
+                                        .then((value) => flag.setflagpost());
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text('Ok')),
+                              TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text('Cancelar')),
+                            ],
+                          ));
+                },
+                icon: Icon(Icons.delete_outline),
+                color: Theme.of(context).colorScheme.onPrimary,
+              ),
+              IconButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AddPost(objpost: objpostmodel)),
+                    );
+                  },
+                  icon: iconRate,
+                  color: Theme.of(context).colorScheme.onPrimary),
+            ],
           ),
           leading: avatar,
         ),
@@ -77,18 +96,9 @@ class ItemPostWidget extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 15),
           child: desctxt,
         ),
-        ListTile(
-          trailing: IconButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => AddPost(objpost: objpostmodel)),
-                );
-              },
-              icon: iconRate,
-              color: Theme.of(context).colorScheme.onPrimary),
-        ),
+        Divider(
+          height: 10,
+        )
       ]),
     );
   }

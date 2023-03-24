@@ -27,6 +27,13 @@ const String Route_Calendar = '/Calendar';
 const String Route_Api = '/Api';
 const String Route_Modify = '/modify';
 
+Map<String, WidgetBuilder> getApplicationRoutes() {
+  return <String, WidgetBuilder>{
+    '/eventos': (BuildContext context) => EventosScreen(),
+    '/modify': (BuildContext context) => ModifyEvent(),
+  };
+}
+
 class MyRoutes {
   static Route<dynamic> generatroute(RouteSettings settings) {
     switch (settings.name) {
@@ -55,7 +62,7 @@ class MyRoutes {
       case '/Calendar':
         return MaterialPageRoute(builder: (_) => EventosScreen());
       case '/modify':
-        return MaterialPageRoute(builder: (_) => ModifyEvent());
+        return MaterialPageRoute(builder: (_) => const ModifyEvent());
       case '/Api':
         return MaterialPageRoute(builder: (_) => ListPopularVideos());
       default:

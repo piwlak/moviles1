@@ -3,14 +3,14 @@ class EventModel {
   String? titleE;
   String? dscEvento;
   String? fechaEvento;
-  bool? completado;
+  bool completado;
 
   EventModel({
     this.idEvento,
     this.titleE,
     this.dscEvento,
     this.fechaEvento,
-    this.completado,
+    required this.completado,
   });
 
   factory EventModel.fromMap(Map<String, dynamic> map) {

@@ -1,12 +1,10 @@
-import 'dart:math';
-
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:moviles1/models/Eventos.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:moviles1/database/database_helper.dart';
-
 import '../routes.dart';
+import 'modifyEvents.dart';
 
 class EventosScreen extends StatefulWidget {
   @override
@@ -129,6 +127,9 @@ class _EventosScreenState extends State<EventosScreen> {
                           defaultDecoration: BoxDecoration(
                             shape: BoxShape.circle,
                           ),
+                          defaultTextStyle: TextStyle(
+                            color: Theme.of(context).colorScheme.shadow,
+                          ),
                           weekendDecoration: BoxDecoration(
                             shape: BoxShape.circle,
                           ),
@@ -155,11 +156,11 @@ class _EventosScreenState extends State<EventosScreen> {
                                   date.difference(DateTime.now()).inDays;
                               EventModel eve = events[0] as EventModel;
                               bool? completado = eve.completado;
-                              if (daysDifference == 0 && !completado!) {
+                              if (daysDifference == 0 && !completado) {
                                 // Event is today
                                 decoration = BoxDecoration(
                                   shape: BoxShape.circle,
-                                  color: Colors.green,
+                                  color: Color.fromARGB(255, 0, 255, 8),
                                 );
                                 textStyle = TextStyle(color: Colors.white);
                               } else if (daysDifference == 1 ||
@@ -169,13 +170,24 @@ class _EventosScreenState extends State<EventosScreen> {
                                   shape: BoxShape.circle,
                                   color: Colors.yellow,
                                 );
-                              } else if (daysDifference < 0 && !completado!) {
+                              } else if (daysDifference < 0 && !completado) {
                                 // Event has passed and not completed
                                 decoration = BoxDecoration(
                                   shape: BoxShape.circle,
-                                  color: Color.fromARGB(255, 245, 0, 0),
+                                  color: Color.fromARGB(255, 255, 0, 0),
                                 );
                                 textStyle = TextStyle(color: Colors.white);
+                              } else if (daysDifference < 0 && completado) {
+                                decoration = BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Color.fromARGB(255, 0, 248, 8),
+                                );
+                              } else if (events.isNotEmpty) {
+                                decoration = BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Color.fromARGB(255, 0, 247, 255),
+                                );
+                                textStyle = TextStyle(color: Colors.black);
                               }
                             }
                             return Container(
@@ -193,23 +205,107 @@ class _EventosScreenState extends State<EventosScreen> {
                       ),
                       ..._getEventsfromDay(selectedDay).map(
                         (EventModel event) => ListTile(
-                          title: Row(
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  event.dscEvento.toString(),
-                                ),
-                              ),
+                          title: Text(event.titleE.toString()),
+                          trailing: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
                               IconButton(
-                                icon: Icon(Icons.visibility),
+                                icon: Icon(Icons.edit),
                                 onPressed: () {
-                                  Navigator.pushNamed(context, '/modify',
-                                          arguments: event)
-                                      .then((value) {
-                                    setState(() {
-                                      Navigator.pushNamed(context, '/eventos');
-                                    });
-                                  });
+                                  showDialog(
+                                      context: context,
+                                      builder: (context) => AlertDialog(
+                                            title: Text('Editar Evento'),
+                                            content: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                TextFormField(
+                                                  decoration: InputDecoration(
+                                                      hintText: event.titleE
+                                                          .toString()),
+                                                  controller: _titleController,
+                                                ),
+                                                TextFormField(
+                                                  decoration: InputDecoration(
+                                                      hintText:
+                                                          event.dscEvento),
+                                                  controller: _descController,
+                                                ),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text(
+                                                      'Completado:',
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                    ),
+                                                    Switch(
+                                                      value: event.completado,
+                                                      onChanged: (value) {
+                                                        setState(() {
+                                                          event.completado =
+                                                              value;
+                                                        });
+                                                      },
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                            actions: [
+                                              ElevatedButton(
+                                                onPressed: () {
+                                                  database!
+                                                      .UPDATE(
+                                                          'tblEvento',
+                                                          {
+                                                            'idEvento':
+                                                                event.idEvento,
+                                                            'titleE':
+                                                                _titleController
+                                                                    .text
+                                                                    .toString(),
+                                                            'dscEvento':
+                                                                _descController
+                                                                    .text
+                                                                    .toString(),
+                                                            'fechaEvento': event
+                                                                .fechaEvento,
+                                                            'completado': event
+                                                                .completado,
+                                                          },
+                                                          'idEvento')
+                                                      .then((value) {
+                                                    var msg = value > 0
+                                                        ? 'Registro modificado'
+                                                        : 'Ocurrio un error';
+                                                    var snackBar = SnackBar(
+                                                        content: Text(msg));
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .showSnackBar(snackBar);
+                                                    setState(() {});
+                                                  });
+                                                  _titleController.clear();
+                                                  _descController.clear();
+                                                  Navigator.pop(context);
+                                                  setState(() {});
+                                                },
+                                                child: Text('Guardar'),
+                                              ),
+                                              ElevatedButton(
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                child: Text('Cancelar'),
+                                                style: ElevatedButton.styleFrom(
+                                                    primary: Colors.grey),
+                                              )
+                                            ],
+                                          ));
                                 },
                               ),
                               IconButton(
@@ -243,9 +339,21 @@ class _EventosScreenState extends State<EventosScreen> {
                                             ],
                                           ));
                                 },
-                              ),
+                              )
                             ],
                           ),
+                          tileColor: Theme.of(context)
+                              .colorScheme
+                              .secondary
+                              .withOpacity(0.2),
+                          onTap: () {
+                            showDialog(
+                                context: context,
+                                builder: (context) => AlertDialog(
+                                      title: Text(event.titleE.toString()),
+                                      content: Text(event.dscEvento.toString()),
+                                    ));
+                          },
                         ),
                       ),
                     ],
@@ -291,17 +399,120 @@ class _EventosScreenState extends State<EventosScreen> {
                                           mainAxisSize: MainAxisSize.min,
                                           children: <Widget>[
                                             IconButton(
-                                              icon: Icon(Icons.visibility),
+                                              icon: Icon(Icons.edit),
                                               onPressed: () {
-                                                Navigator.pushNamed(
-                                                        context, Route_Modify,
-                                                        arguments: event)
-                                                    .then((value) {
-                                                  setState(() {
-                                                    Navigator.pushNamed(context,
-                                                        Route_Calendar);
-                                                  });
-                                                });
+                                                showDialog(
+                                                    context: context,
+                                                    builder:
+                                                        (context) =>
+                                                            AlertDialog(
+                                                              title: Text(
+                                                                  'Editar Evento'),
+                                                              content: Column(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .min,
+                                                                children: [
+                                                                  TextFormField(
+                                                                    decoration: InputDecoration(
+                                                                        hintText: event
+                                                                            .titleE
+                                                                            .toString()),
+                                                                    controller:
+                                                                        _titleController,
+                                                                  ),
+                                                                  TextFormField(
+                                                                    decoration: InputDecoration(
+                                                                        hintText:
+                                                                            event.dscEvento),
+                                                                    controller:
+                                                                        _descController,
+                                                                  ),
+                                                                  Row(
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .spaceBetween,
+                                                                    children: [
+                                                                      Text(
+                                                                        'Completado:',
+                                                                        style: TextStyle(
+                                                                            fontWeight:
+                                                                                FontWeight.bold),
+                                                                      ),
+                                                                      Switch(
+                                                                        value: event
+                                                                            .completado,
+                                                                        onChanged:
+                                                                            (value) {
+                                                                          setState(
+                                                                              () {
+                                                                            event.completado =
+                                                                                value;
+                                                                          });
+                                                                        },
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                              actions: [
+                                                                ElevatedButton(
+                                                                  onPressed:
+                                                                      () {
+                                                                    database!
+                                                                        .UPDATE(
+                                                                            'tblEvento',
+                                                                            {
+                                                                              'idEvento': event.idEvento,
+                                                                              'titleE': _titleController.text.toString(),
+                                                                              'dscEvento': _descController.text.toString(),
+                                                                              'fechaEvento': event.fechaEvento,
+                                                                              'completado': event.completado,
+                                                                            },
+                                                                            'idEvento')
+                                                                        .then(
+                                                                            (value) {
+                                                                      var msg = value >
+                                                                              0
+                                                                          ? 'Registro modificado'
+                                                                          : 'Ocurrio un error';
+                                                                      var snackBar =
+                                                                          SnackBar(
+                                                                              content: Text(msg));
+                                                                      ScaffoldMessenger.of(
+                                                                              context)
+                                                                          .showSnackBar(
+                                                                              snackBar);
+                                                                      setState(
+                                                                          () {});
+                                                                    });
+                                                                    _titleController
+                                                                        .clear();
+                                                                    _descController
+                                                                        .clear();
+                                                                    Navigator.pop(
+                                                                        context);
+                                                                    setState(
+                                                                        () {});
+                                                                  },
+                                                                  child: Text(
+                                                                      'Guardar'),
+                                                                ),
+                                                                ElevatedButton(
+                                                                  onPressed:
+                                                                      () {
+                                                                    Navigator.pop(
+                                                                        context);
+                                                                  },
+                                                                  child: Text(
+                                                                      'Cancelar'),
+                                                                  style: ElevatedButton
+                                                                      .styleFrom(
+                                                                          primary:
+                                                                              Colors.grey),
+                                                                )
+                                                              ],
+                                                            ));
                                               },
                                             ),
                                             IconButton(
@@ -346,13 +557,24 @@ class _EventosScreenState extends State<EventosScreen> {
                                                           ],
                                                         ));
                                               },
-                                            ),
+                                            )
                                           ],
                                         ),
                                         tileColor: Theme.of(context)
                                             .colorScheme
                                             .primary
                                             .withOpacity(0.4),
+                                        onTap: () {
+                                          showDialog(
+                                              context: context,
+                                              builder: (context) => AlertDialog(
+                                                    title: Text(event.titleE
+                                                        .toString()),
+                                                    content: Text(event
+                                                        .dscEvento
+                                                        .toString()),
+                                                  ));
+                                        },
                                       ),
                                     ),
                                   ],

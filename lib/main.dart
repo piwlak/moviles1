@@ -50,6 +50,7 @@ class _PMSNAppState extends State<PMSNApp> {
                     background: const Color.fromARGB(255, 0, 0, 0),
                     onBackground: const Color.fromARGB(255, 255, 255, 255),
                     onSecondary: Color.fromARGB(255, 0, 13, 78),
+                    shadow: const Color.fromARGB(255, 255, 255, 255),
                     onPrimaryContainer:
                         const Color.fromARGB(255, 7, 255, 234)))),
         AppTheme(

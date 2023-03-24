@@ -17,7 +17,7 @@ class _ModifyEventState extends State<ModifyEvent> {
     final txttitEvent = TextEditingController();
     final txtdscEvent = TextEditingController();
     if (ModalRoute.of(context)!.settings.arguments != null) {
-      event = ModalRoute.of(context)!.settings.arguments as EventModel;
+      event = ModalRoute.of(context)?.settings.arguments as EventModel;
       txtdscEvent.text = event!.dscEvento.toString();
       txttitEvent.text = event!.titleE.toString();
     }
@@ -59,7 +59,7 @@ class _ModifyEventState extends State<ModifyEvent> {
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   Switch(
-                    value: event!.completado!,
+                    value: event!.completado,
                     onChanged: (value) {
                       setState(() {
                         event!.completado = value;
@@ -76,7 +76,7 @@ class _ModifyEventState extends State<ModifyEvent> {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      database!
+                      database
                           .UPDATE(
                               'tblEvento',
                               {
