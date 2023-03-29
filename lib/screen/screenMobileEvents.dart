@@ -4,7 +4,6 @@ import 'package:moviles1/models/Eventos.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:moviles1/database/database_helper.dart';
 import '../routes.dart';
-import 'modifyEvents.dart';
 
 class EventosScreen extends StatefulWidget {
   @override
@@ -60,8 +59,8 @@ class _EventosScreenState extends State<EventosScreen> {
         actions: [
           IconButton(
             icon: isCalendarView
-                ? Icon(Icons.autorenew_sharp)
-                : Icon(Icons.autorenew_sharp),
+                ? Icon(Icons.list)
+                : Icon(Icons.calendar_month_sharp),
             onPressed: () {
               setState(() {
                 isCalendarView = !isCalendarView;
@@ -245,10 +244,9 @@ class _EventosScreenState extends State<EventosScreen> {
                                                     Switch(
                                                       value: event.completado,
                                                       onChanged: (value) {
-                                                        setState(() {
-                                                          event.completado =
-                                                              value;
-                                                        });
+                                                        event.completado =
+                                                            value;
+                                                        setState(() {});
                                                       },
                                                     ),
                                                   ],

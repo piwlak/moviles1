@@ -1,52 +1,49 @@
+import 'package:moviles1/models/popularmodel.dart';
+import 'package:moviles1/network/api_popular.dart';
 import 'package:flutter/material.dart';
-
-import '../models/popularmodel.dart';
-import '../network/api_popular.dart';
 import '../widgets/Item_Popular.dart';
 
-class ListPopularVideos extends StatefulWidget {
-  const ListPopularVideos({super.key});
+class PopulaMoviesScreen extends StatefulWidget {
+  const PopulaMoviesScreen({super.key});
 
   @override
-  State<ListPopularVideos> createState() => _ListPopularVideosState();
+  State<PopulaMoviesScreen> createState() => _PopulaMoviesScreenState();
 }
 
-class _ListPopularVideosState extends State<ListPopularVideos> {
+class _PopulaMoviesScreenState extends State<PopulaMoviesScreen> {
+  ApiPopular? apiPopular;
   @override
-  ApiPopular? api;
   void initState() {
     super.initState();
-    api = ApiPopular();
+    apiPopular = ApiPopular();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('List Popular'),
-      ),
+      appBar: AppBar(),
       body: FutureBuilder(
-        future: api!.getAllPopular(),
-        builder: (context, AsyncSnapshot<List<Popularmodel>?> snapshot) {
-          if (snapshot.hasData) {
+          future: apiPopular!.getAllPopular(),
+          builder: (context, AsyncSnapshot<List<PopularModel>?> snapshot) {
             return GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 8,
-                  mainAxisSpacing: 10,
-                  crossAxisSpacing: 10),
-              itemCount: snapshot.data != null ? snapshot.data!.length : 0,
-              itemBuilder: (context, index) {
-                return ItemPopular(popularmodel: snapshot.data![index]);
-              },
-            );
-          } else if (snapshot.hasError) {
-            return Center(child: Text('Error'));
-          } else {
-            return CircularProgressIndicator();
-          }
-        },
-      ),
+                padding: const EdgeInsets.all(10),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 10,
+                    childAspectRatio: .8,
+                    crossAxisSpacing: 10),
+                itemCount: snapshot.data != null ? snapshot.data!.length : 0,
+                itemBuilder: (context, index) {
+                  if (snapshot.hasData) {
+                    return ItemPopularMovie(
+                        popularModel: snapshot.data![index]);
+                  } else if (snapshot.hasError) {
+                    return const Text('ALGO FALLO');
+                  } else {
+                    return const CircularProgressIndicator();
+                  }
+                });
+          }),
     );
   }
 }

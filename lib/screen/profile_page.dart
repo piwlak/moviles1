@@ -123,9 +123,18 @@ class _ProfilePageState extends State<ProfilePage> {
                 height: 1,
               ),
               ListTile(
-                  leading: Icon(Icons.movie),
-                  title: Text('API'),
-                  trailing: Icon(Icons.chevron_right),
+                  leading: Icon(
+                    Icons.movie,
+                    size: _drawerIconSize,
+                    color: Theme.of(context).colorScheme.onPrimaryContainer,
+                  ),
+                  title: Text(
+                    'API',
+                    style: TextStyle(
+                        fontSize: _drawerFontSize,
+                        color:
+                            Theme.of(context).colorScheme.onPrimaryContainer),
+                  ),
                   onTap: () {
                     Navigator.pushNamed(context, Route_Api);
                   }),
