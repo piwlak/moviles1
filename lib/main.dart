@@ -78,7 +78,7 @@ class _PMSNAppState extends State<PMSNApp> {
             theme: ThemeProvider.themeOf(themeContext).data,
             title: 'Socialitec',
             debugShowCheckedModeBanner: false,
-            onGenerateRoute: MyRoutes.generatroute,
+            routes: getApplicationRoutes(),
             initialRoute: Route_login,
             home: const LoginPage(),
           ),

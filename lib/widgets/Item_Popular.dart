@@ -9,10 +9,16 @@ class ItemPopularMovie extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FadeInImage(
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, '/movie', arguments: popularModel);
+      },
+      child: FadeInImage(
         fit: BoxFit.fill,
-        placeholder: const AssetImage('assets/loading1.gif'),
+        placeholder: const AssetImage('assets/loading.gif'),
         image: NetworkImage(
-            'https://image.tmdb.org/t/p/w500/${popularModel!.posterPath}'));
+            'https://image.tmdb.org/t/p/w500/${popularModel!.posterPath}'),
+      ),
+    );
   }
 }

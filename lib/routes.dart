@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:moviles1/pages/loginpage.dart';
+import 'package:moviles1/screen/MovieDetail.dart';
 import 'package:moviles1/screen/PopularVideos.dart';
 import 'package:moviles1/screen/add_post.dart';
 import 'package:moviles1/screen/forgot_password_page.dart';
@@ -28,41 +29,20 @@ const String Route_Modify = '/modify';
 
 Map<String, WidgetBuilder> getApplicationRoutes() {
   return <String, WidgetBuilder>{
-    '/eventos': (BuildContext context) => EventosScreen(),
+    '/Add': (BuildContext context) => AddPost(
+          objpost: null,
+        ),
+    '/login': (BuildContext context) => LoginPage(),
+    '/profile': (BuildContext context) => ProfilePage(),
+    '/registration': (BuildContext context) => RegistrationPage(),
+    '/forgotPass': (BuildContext context) => ForgotPasswordPage(),
+    '/SplashScreen': (BuildContext context) => SplashScreen(),
+    '/verificationPass': (BuildContext context) =>
+        ForgotPasswordVerificationPage(),
+    '/onBorard': (BuildContext context) => OnboardingPage(),
+    '/Settings': (BuildContext context) => ThemeSettings(),
+    '/Calendar': (BuildContext context) => EventosScreen(),
+    '/Api': (BuildContext context) => PopulaMoviesScreen(),
+    '/movie': (BuildContext context) => MovieDetail(),
   };
-}
-
-class MyRoutes {
-  static Route<dynamic> generatroute(RouteSettings settings) {
-    switch (settings.name) {
-      case '/Add':
-        return MaterialPageRoute(
-            builder: (_) => AddPost(
-                  objpost: null,
-                ));
-      case '/login':
-        return MaterialPageRoute(builder: (_) => const LoginPage());
-      case '/profile':
-        return MaterialPageRoute(builder: (_) => ProfilePage());
-      case '/registration':
-        return MaterialPageRoute(builder: (_) => RegistrationPage());
-      case '/forgotPass':
-        return MaterialPageRoute(builder: (_) => const ForgotPasswordPage());
-      case '/SplashScreen':
-        return MaterialPageRoute(builder: (_) => SplashScreen());
-      case '/verificationPass':
-        return MaterialPageRoute(
-            builder: (_) => const ForgotPasswordVerificationPage());
-      case '/onBorard':
-        return MaterialPageRoute(builder: (_) => const OnboardingPage());
-      case '/Settings':
-        return MaterialPageRoute(builder: (_) => ThemeSettings());
-      case '/Calendar':
-        return MaterialPageRoute(builder: (_) => EventosScreen());
-      case '/Api':
-        return MaterialPageRoute(builder: (_) => PopulaMoviesScreen());
-      default:
-        return MaterialPageRoute(builder: (_) => const LoginPage());
-    }
-  }
 }
