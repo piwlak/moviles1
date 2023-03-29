@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import '../common/theme_helper.dart';
+import '../firebase/email_auth.dart';
 import 'forgot_password_page.dart';
 import 'profile_page.dart';
 import 'registration_page.dart';
@@ -16,6 +17,9 @@ class LoginPageMobile extends StatefulWidget {
 class _LoginPageState extends State<LoginPageMobile> {
   double _headerHeight = 250;
   final _formKey = GlobalKey<FormState>();
+  EmailAuth? auth = EmailAuth();
+  TextEditingController mail = TextEditingController();
+  TextEditingController password = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -61,6 +65,7 @@ class _LoginPageState extends State<LoginPageMobile> {
                               children: [
                                 Container(
                                   child: TextFormField(
+                                      controller: mail,
                                       style: TextStyle(color: Colors.black),
                                       decoration: ThemeHelper()
                                           .textInputDecoration('User Name',
@@ -77,6 +82,7 @@ class _LoginPageState extends State<LoginPageMobile> {
                                 SizedBox(height: 30.0),
                                 Container(
                                   child: TextFormField(
+                                      controller: password,
                                       style: TextStyle(color: Colors.black),
                                       obscureText: false,
                                       decoration: ThemeHelper()
@@ -133,6 +139,9 @@ class _LoginPageState extends State<LoginPageMobile> {
                                     ),
                                     onPressed: () {
                                       if (_formKey.currentState!.validate()) {
+                                        auth!.singInWithEmailandPassword(
+                                            email: mail.text,
+                                            password: password.text);
                                         Navigator.of(context)
                                             .pushAndRemoveUntil(
                                                 MaterialPageRoute(

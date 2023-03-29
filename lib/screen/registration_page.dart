@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:moviles1/firebase/email_auth.dart';
 import '../common/theme_helper.dart';
 import 'profile_page.dart';
 import '../widgets/header_widget.dart';
@@ -18,9 +19,12 @@ class RegistrationPage extends StatefulWidget {
 
 class _RegistrationPageState extends State<RegistrationPage> {
   final _formKey = GlobalKey<FormState>();
+  TextEditingController mail = TextEditingController();
+  TextEditingController password = TextEditingController();
   bool checkedValue = false;
   bool checkboxValue = false;
   File? _image;
+  EmailAuth? auth = EmailAuth();
 
   Future _pickImage(ImageSource source) async {
     try {
@@ -148,6 +152,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         SizedBox(height: 20.0),
                         Container(
                           child: TextFormField(
+                            controller: mail,
                             style: TextStyle(color: Colors.black),
                             decoration: ThemeHelper().textInputDecoration(
                                 "E-mail address", "Enter your email"),
@@ -186,6 +191,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         SizedBox(height: 20.0),
                         Container(
                           child: TextFormField(
+                            controller: password,
                             style: TextStyle(color: Colors.black),
                             obscureText: true,
                             decoration: ThemeHelper().textInputDecoration(
@@ -262,6 +268,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             ),
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {
+                                auth!.createUserWithEmailAndPassword(
+                                    email: mail.text, password: password.text);
                                 Navigator.of(context).pushAndRemoveUntil(
                                     MaterialPageRoute(
                                         builder: (context) => ProfilePage()),
