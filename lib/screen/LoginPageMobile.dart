@@ -139,16 +139,31 @@ class _LoginPageState extends State<LoginPageMobile> {
                                     ),
                                     onPressed: () {
                                       if (_formKey.currentState!.validate()) {
-                                        auth!.singInWithEmailandPassword(
-                                            email: mail.text,
-                                            password: password.text);
-                                        Navigator.of(context)
-                                            .pushAndRemoveUntil(
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        ProfilePage()),
-                                                (Route<dynamic> route) =>
-                                                    false);
+                                        auth!
+                                            .signInWithEmailAndPassword(
+                                                email: mail.text,
+                                                password: password.text)
+                                            .then((value) {
+                                          if (value) {
+                                            Navigator.of(context)
+                                                .pushNamed('/profile');
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              const SnackBar(
+                                                  backgroundColor: Colors.green,
+                                                  content: Text(
+                                                      'Correcto, Bienvenido.')),
+                                            );
+                                          } else {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              const SnackBar(
+                                                  backgroundColor: Colors.red,
+                                                  content: Text(
+                                                      'Correo o Contraseña erroneo.')),
+                                            );
+                                          }
+                                        });
                                       }
                                     },
                                   ),

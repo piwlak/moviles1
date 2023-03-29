@@ -268,16 +268,32 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             ),
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {
-                                auth!.createUserWithEmailAndPassword(
-                                    email: mail.text, password: password.text);
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                      content: Text('Processing Data')),
-                                );
-                                Navigator.of(context).pushAndRemoveUntil(
-                                    MaterialPageRoute(
-                                        builder: (context) => ProfilePage()),
-                                    (Route<dynamic> route) => false);
+                                auth!
+                                    .registerWithEmailAndPassword(
+                                        email: mail.text,
+                                        password: password.text)
+                                    .then((value) {
+                                  if (value) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                          backgroundColor: Colors.greenAccent,
+                                          content: Text(
+                                              'Su usuario ha sido Creado.')),
+                                    );
+                                    Navigator.of(context).pushAndRemoveUntil(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                ProfilePage()),
+                                        (Route<dynamic> route) => false);
+                                  } else {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                          backgroundColor: Colors.red,
+                                          content: Text(
+                                              'Ya Existe un usuario con este correo')),
+                                    );
+                                  }
+                                });
                               }
                             },
                           ),
