@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:moviles1/models/popularmodel.dart';
 import 'package:moviles1/widgets/movie.dart';
 
 class MovieDetail extends StatefulWidget {
-  const MovieDetail({super.key});
+  const MovieDetail({super.key, PopularModel? popularModel});
 
   @override
   State<MovieDetail> createState() => _MovieDetailState();

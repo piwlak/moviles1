@@ -5,6 +5,8 @@ import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
+import '../models/popularmodel.dart';
+
 class DatabaseHelper {
   static final nameDB = 'SOCIALDB';
   static final versionDB = 1;
@@ -40,6 +42,22 @@ class DatabaseHelper {
         completado BOOLEAN
       )''';
     await db.execute(query2);
+    String query3 = '''
+      CREATE TABLE tblPopularFav (
+        backdrop_path TEXT,
+        id INTEGER,
+        original_language TEXT,
+        original_title TEXT,
+        overview TEXT,
+        popularity REAL,
+        poster_path TEXT,
+        release_date TEXT,
+        title TEXT,
+        vote_average REAL,
+        vote_count INTEGER
+      );
+    ''';
+    await db.execute(query3);
   }
 
   Future<int> INSERT(String tblName, Map<String, dynamic> data) async {
@@ -89,5 +107,21 @@ class DatabaseHelper {
       eventos = result.map((evento) => EventModel.fromMap(evento)).toList();
     }
     return eventos;
+  }
+
+  Future<List<PopularModel>> getAllPopular() async {
+    var conexion = await database;
+    var result = await conexion.query('tblPopularFav');
+    return result.map((popular) => PopularModel.fromMap(popular)).toList();
+  }
+
+  Future<bool> searchPopular(int id_popular) async {
+    var conexion = await database;
+    var query = "SELECT * FROM tblPopularFav where id=?";
+    var result = await conexion.rawQuery(query, [id_popular]);
+    if (result != null && result.isNotEmpty) {
+      return true;
+    }
+    return false;
   }
 }

@@ -53,6 +53,8 @@ dependencies:
   firebase_auth_web: ^5.2.10
   firebase_auth: ^4.3.0
   intl: ^0.17.0
+  youtube_player_flutter: ^8.1.2
+
 
 
 
